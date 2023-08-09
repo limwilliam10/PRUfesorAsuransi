@@ -43,15 +43,15 @@ let appHeader = `
       <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between position-relative">
     
-          <a href="index.html" class="logo me-3"><img src="assets/img/logo.png"></a>
-          <h1 class="logo me-auto"><a href="index.html"><span>PRU</span>fesor<br>Asuransi</a></h1>
+          <a href="www.prufesorasuransi.com" class="logo me-3"><img src="assets/img/logo.png"></a>
+          <h1 class="logo me-auto"><a href="www.prufesorasuransi.com"><span>PRU</span>fesor<br>Asuransi</a></h1>
           <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
               
               <!-- (signed-off: WilliamLim)
-              <li><a class="nav-link scrollto active" href="index.html#hero">Home</a></li>
+              <li><a class="nav-link scrollto active" href="www.prufesorasuransi.com#hero">Home</a></li>
     
-              <li><a class="nav-link scrollto" href="index.html#portfolio">Portfolio</a></li>
+              <li><a class="nav-link scrollto" href="www.prufesorasuransi.com#portfolio">Portfolio</a></li>
               
               <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
@@ -115,17 +115,17 @@ let appHeader = `
               </li>
               -->
     
-              <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-              <li><a class="nav-link scrollto" href="index.html#products">Products</a></li>
-              <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-              <li><a class="nav-link scrollto" href="index.html#team">Team</a></li>
-              <li><a href="articles.html">Articles</a></li>
-              <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li>
+              <li><a class="nav-link scrollto" href="www.prufesorasuransi.com#about">About</a></li>
+              <li><a class="nav-link scrollto" href="www.prufesorasuransi.com#products">Products</a></li>
+              <li><a class="nav-link scrollto" href="www.prufesorasuransi.com#services">Services</a></li>
+              <li><a class="nav-link scrollto" href="www.prufesorasuransi.com#team">Team</a></li>
+              <li><a href="articles">Articles</a></li>
+              <li><a class="nav-link scrollto" href="www.prufesorasuransi.com#contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->
     
-          <a href="get-quote.html" class="get-started-btn scrollto">Get Quote</a>
+          <a href="get-quote" class="get-started-btn scrollto">Get Quote</a>
         </div>
       </header>
       <!-- End Header -->

@@ -54,7 +54,7 @@ let appSidebar = `
             </li>
             
             <li>
-                <a class="collapsed" href="get-quote.html">
+                <a class="collapsed" href="get-quote">
                     <i class="bi bi-person"></i>
                     <span>Get Quote</span>
                 </a>

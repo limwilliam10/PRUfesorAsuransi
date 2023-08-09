@@ -60,22 +60,22 @@ let appFooter = `
               <div class="col-lg-4 col-md-3 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="index.html#about">About us</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="index.html#products">Products</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="index.html#services">Services</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="index.html#team">Team</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="index.html#contact">Contact</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#about">About us</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#products">Products</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#services">Services</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#team">Team</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#contact">Contact</a></li>
                 </ul>
               </div>
     
               <div class="col-lg-4 col-md-3 footer-links">
                 <h4>Our Services</h4>
                 <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote.html">Dedicated Servicing Agent</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote.html">Ilustrasi Premi Asuransi</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote.html">Review Polis Asuransi Lama</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote.html">QnA Terkait Asuransi</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote.html">Peluang Bisnis</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Dedicated Servicing Agent</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Ilustrasi Premi Asuransi</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Review Polis Asuransi Lama</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">QnA Terkait Asuransi</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Peluang Bisnis</a></li>
                 </ul>
               </div>
             </div>
