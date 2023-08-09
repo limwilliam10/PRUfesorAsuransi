@@ -86,7 +86,7 @@ let appFooter = `
     
           <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-              &copy; Copyright <a href="https://limwilliam.com/"><strong><span>WilliamLim</span></strong></a>
+              &copy; Copyright <a href="https://www.limwilliam.com/"><strong><span>WilliamLim</span></strong></a>
             </div>
             <div class="credits">
               <strong>All Rights Reserved</strong>
