@@ -60,11 +60,11 @@ let appFooter = `
               <div class="col-lg-4 col-md-3 footer-links">
                 <h4>Useful Links</h4>
                 <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#about">About us</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#products">Products</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#services">Services</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#team">Team</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="www.prufesorasuransi.com#contact">Contact</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="https://www.prufesorasuransi.com#about">About us</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="https://www.prufesorasuransi.com#products">Products</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="https://www.prufesorasuransi.com#services">Services</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="https://www.prufesorasuransi.com#team">Team</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="https://www.prufesorasuransi.com#contact">Contact</a></li>
                 </ul>
               </div>
     
