@@ -221,12 +221,21 @@
       if(!ymd) return 0; // value from <input type="date"> is yyyy-mm-dd
       const [y,m,d] = ymd.split('-').map(Number);
       if(!y||!m||!d) return 0;
-      const dob = new Date(y, m-1, d);
       const today = new Date();
-      let a = today.getFullYear() - dob.getFullYear();
-      const mm = today.getMonth() - dob.getMonth();
-      if(mm < 0 || (mm === 0 && today.getDate() < dob.getDate())) a--;
-      return Math.max(0,a);
+      const tM = today.getMonth() + 1;
+      const tD = today.getDate();
+      const base = today.getFullYear() - y; // year difference
+      const passed = (tM > m) || (tM === m && tD > d);       // ulang tahun SUDAH lewat tahun ini
+      const todayIs = (tM === m && tD === d);                // tepat hari ulang tahun
+
+      // Age Last Birthday baseline
+      let age = base;
+      if(!passed && !todayIs) age = base - 1;                // ulang tahun BELUM lewat → kurangi 1
+
+      // Business rule: jika ulang tahun sudah lewat (strict), gunakan "usia berikutnya"
+      if(passed) age = age + 1;
+
+      return Math.max(0, age);
     }
 
     // Dummy pricing model for demo purposes only
