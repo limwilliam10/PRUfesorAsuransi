@@ -80,6 +80,23 @@
 
     /* Utilities used by filter/search scripting */
     .hide{display:none !important}
+      /* Floating Results (hidden by default) */
+    .floatResults{position:fixed; bottom:16px; right:16px; width:min(92vw,560px); background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 20px 50px rgba(31,35,48,.25); z-index:100}
+    .floatResults .results{margin:0; padding:12px}
+    @media(max-width:640px){ .floatResults{left:12px; right:12px; bottom:12px; width:auto} }
+      /* Floating modal overrides */
+    .floatResults{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:fit-content; max-width:min(92vw,900px); background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 24px 60px rgba(31,35,48,.28); z-index:100}
+    .floatResults .floatBody{padding:16px}
+    .floatResults .results{margin:12px 0 0; padding:0}
+    .closeBtn{position:absolute; top:8px; right:10px; border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer; color:#9aa0aa}
+    .closeBtn:hover{color:#5b616a}
+    .summaryGrid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+    .summaryGrid .item{border:1px dashed var(--stroke); border-radius:10px; padding:8px 10px}
+    .summaryGrid .label{display:block; font-size:11px; color:var(--muted); letter-spacing:.2px}
+    .summaryGrid .val{font-weight:700}
+    .modalBackdrop{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:90}
+    @media(max-width:960px){ .summaryGrid{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:640px){ .summaryGrid{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
@@ -170,19 +187,40 @@
 
       <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
 
-      <!-- RESULTS -->
-      <div class="results">
-        <div class="resultCard accent-warn">
-          <h4>Estimasi premi</h4>
-          <div id="premi" class="value">Rp – / tahun</div>
-        </div>
-        <div class="resultCard">
-          <h4>Diskon (khusus hari ini)</h4>
-          <div class="value"><span id="disc">0</span>%</div>
-        </div>
-        <div class="resultCard accent-ok">
-          <h4>Estimasi premi (setelah diskon)</h4>
-          <div id="premiNet" class="value">Rp – / tahun</div>
+      <!-- RESULTS (Floating; shown after Calculate) -->
+      <div id="resultsBackdrop" class="modalBackdrop hide"></div>
+      <div id="resultsFloat" class="floatResults hide" role="dialog" aria-live="polite" aria-modal="true">
+        <button class="closeBtn" id="closeResults" aria-label="Tutup">×</button>
+        <div class="floatBody">
+          <h3 style="margin:0 0 10px; font-size:16px;">Ringkasan Input</h3>
+          <div class="summaryGrid">
+            <div class="item"><span class="label">Nama</span><span class="val" id="s_nama">-</span></div>
+            <div class="item"><span class="label">Nomor Handphone (WhatsApp)</span><span class="val" id="s_wa">-</span></div>
+            <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
+            <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
+            <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
+            <div class="item"><span class="label">Status merokok</span><span class="val" id="s_smoke">-</span></div>
+            <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
+            <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
+            <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
+          </div>
+
+          <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+
+          <div class="results">
+            <div class="resultCard accent-warn">
+              <h4>Estimasi premi</h4>
+              <div id="premi" class="value">Rp – / tahun</div>
+            </div>
+            <div class="resultCard">
+              <h4>Diskon (khusus hari ini)</h4>
+              <div class="value"><span id="disc">0</span>%</div>
+            </div>
+            <div class="resultCard accent-ok">
+              <h4>Estimasi premi (setelah diskon)</h4>
+              <div id="premiNet" class="value">Rp – / tahun</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -238,6 +276,7 @@
         produk: document.getElementById('produk').value,
         masa: parseInt((masaText.match(/[0-9]+/)||[''])[0], 10) || 0,
       };
+      fillSummary();
       const raw = estimatePremium(data);
       const discPct = (data.produk === 'PRUCinta' ? 7 : 3) + (data.masa >= 15 ? 2 : 0);
       document.getElementById('disc').textContent = discPct;
@@ -245,9 +284,13 @@
         document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
         const net = Math.round(raw * (100 - discPct)/100);
         document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
+        document.getElementById('resultsFloat').classList.remove('hide');
+        document.getElementById('resultsBackdrop').classList.remove('hide');
       } else {
         document.getElementById('premi').textContent = 'Rp – / tahun';
         document.getElementById('premiNet').textContent = 'Rp – / tahun';
+        document.getElementById('resultsFloat').classList.add('hide');
+        document.getElementById('resultsBackdrop').classList.add('hide');
       }
     }
 
@@ -321,6 +364,31 @@
     waField.addEventListener('input', () => {
       waField.value = waField.value.replace(/\D/g,'');
     });
+    // --- Summary helpers ---
+    const toDisplayDMY = (ymd) => { if(!ymd) return ''; const [y,m,d] = ymd.split('-'); return [d,m,y].join('/'); };
+    const selText = (id) => { const el = document.getElementById(id); return el && el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : ''; };
+    function fillSummary(){
+      const v = (id) => (document.getElementById(id).value || '').trim();
+      document.getElementById('s_nama').textContent = v('nama') || '-';
+      document.getElementById('s_wa').textContent = v('wa') || '-';
+      document.getElementById('s_email').textContent = v('email') || '-';
+      document.getElementById('s_gender').textContent = selText('gender') || '-';
+      document.getElementById('s_dob').textContent = v('dob') ? toDisplayDMY(v('dob')) : '-';
+      document.getElementById('s_smoke').textContent = selText('smoke') || '-';
+      document.getElementById('s_produk').textContent = selText('produk') || '-';
+      const upVal = v('up');
+      document.getElementById('s_up').textContent = upVal ? ('Rp ' + upVal) : '-';
+      document.getElementById('s_masa').textContent = selText('masa') || '-';
+    }
+
+    // Close / hide handlers
+    function hideResults(){
+      document.getElementById('resultsFloat').classList.add('hide');
+      document.getElementById('resultsBackdrop').classList.add('hide');
+    }
+    document.getElementById('closeResults').addEventListener('click', hideResults);
+    document.getElementById('resultsBackdrop').addEventListener('click', hideResults);
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') hideResults(); });
   </script>
 </body>
 </html>
