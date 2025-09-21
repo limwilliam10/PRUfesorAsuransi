@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalkulator Premi Asuransi Jiwa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#faf9fb;
+      --card:#ffffff;
+      --ink:#1f2330;
+      --muted:#6b7280;
+      --brand:#3c0b2b; /* maroon */
+      --brand-2:#8b1c49; /* accent */
+      --stroke:#e6e6ea;
+      --focus:#bba2c3;
+      --ok:#e3f6ef;
+      --warn:#fde2e2;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.45;
+    }
+    .wrap{max-width:980px; margin:24px auto 80px; padding:0 16px}
+
+    /* Header */
+    .title{font-weight:800; font-size:22px; letter-spacing:.2px; margin:8px 0 14px}
+    .subtitle{color:var(--muted); font-size:13px; margin-bottom:18px}
+
+    /* Filter bar */
+    .filterbar{position:sticky; top:0; z-index:10; background:rgba(250,249,251,.7); backdrop-filter:saturate(140%) blur(6px); border:1px solid var(--stroke); padding:10px; border-radius:999px; display:flex; gap:10px; align-items:center}
+    .chip{display:flex; align-items:center; gap:8px; border:1px dashed #d7cfe0; padding:8px 10px; border-radius:999px; background:#fff}
+    .chip select{border:none; background:transparent; outline:none; color:var(--ink); font-weight:500}
+    .search{flex:1; display:flex; align-items:center; gap:8px; background:#fff; border:1px solid var(--stroke); border-radius:999px; padding:8px 12px}
+    .search input{border:none; outline:none; flex:1; font-size:14px; background:transparent}
+    .resetBtn{border:none; background:var(--brand); color:#fff; border-radius:999px; padding:10px 14px; font-weight:600; cursor:pointer}
+    .resetBtn:hover{background:#2d081f}
+
+    /* Card */
+    .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 5px 18px rgba(28,18,48,.05); overflow:hidden}
+    .cardHeader{padding:18px 18px 0}
+    .grid{display:grid; grid-template-columns:1fr; gap:12px; padding:18px}
+    @media(min-width:720px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media(min-width:960px){ .grid{grid-template-columns:repeat(3,1fr)} }
+
+    label{font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.2px}
+    .field{display:flex; flex-direction:column; gap:6px}
+    .input, select, input[type="date"]{height:38px; width:100%; border:1px solid var(--stroke); border-radius:10px; padding:8px 10px; font-size:14px; outline:none; background:#fff}
+    .input:focus, select:focus, input[type="date"]:focus{border-color:#cdb4d9; box-shadow:0 0 0 4px rgba(187,162,195,.18)}
+
+    .split{display:flex; align-items:center; gap:10px}
+    .split .unit{color:var(--muted); font-size:13px}
+    .split .input{flex:1}
+
+    .actions{display:flex; justify-content:center; padding:10px 18px 22px}
+    .btn{appearance:none; border:none; background:var(--brand); color:#fff; height:40px; padding:0 18px; border-radius:10px; font-weight:700; letter-spacing:.2px; cursor:pointer}
+    .btn:hover{background:#2d081f}
+
+    /* Results */
+    .results{display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; padding:0 18px 18px}
+    @media(min-width:720px){ .results{grid-template-columns:repeat(3,1fr)} }
+    .resultCard{border:1px solid var(--stroke); border-radius:14px; padding:14px}
+    .resultCard h4{margin:0 0 6px; font-size:12px; color:var(--muted); letter-spacing:.2px}
+    .resultCard .value{font-size:20px; font-weight:800}
+    .accent-warn{background:var(--warn)}
+    .accent-ok{background:var(--ok)}
+    .muted{color:var(--muted)}
+
+    .footer{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:18px; border-top:1px dashed var(--stroke); font-size:12px; color:var(--muted)}
+    .link{color:var(--brand-2); text-decoration:none; font-weight:700}
+    .tiny{font-size:11px}
+
+    .powered{padding:12px 18px; text-align:center; color:#b45475; font-weight:700}
+
+    /* Utilities used by filter/search scripting */
+    .hide{display:none !important}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
+    <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
+
+    <!-- FILTER BAR -->
+    <div class="filterbar" id="filterbar">
+      <div class="chip">
+        <label for="fGender">Jenis Kelamin</label>
+        <select id="fGender">
+          <option value="">Semua</option>
+          <option value="L">Laki-laki</option>
+          <option value="P">Perempuan</option>
+        </select>
+      </div>
+      <div class="chip">
+        <label for="fProduct">Produk</label>
+        <select id="fProduct">
+          <option value="">Semua</option>
+          <option>PRUCerah Plus</option>
+          <option>PRUWarisan</option>
+          <option>PRUlite</option>
+        </select>
+      </div>
+      <div class="search" title="Free-text bar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.2-4.2" stroke="#9aa0aa" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="#9aa0aa" stroke-width="2"/></svg>
+        <input id="q" type="search" placeholder="Cari cepat (nama, email, no. WA, dsb.)"/>
+      </div>
+      <button class="resetBtn" id="resetFilter">Reset</button>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="card" id="formCard" style="margin-top:14px">
+      <div class="cardHeader"></div>
+      <div class="grid" id="formGrid">
+        <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
+        <div class="field"><label>Jenis Kelamin</label>
+          <select id="gender">
+            <option disabled selected value="">Pilih</option>
+            <option value="L">Laki-laki</option>
+            <option value="P">Perempuan</option>
+          </select>
+        </div>
+        <div class="field"><label>Nama Produk</label>
+          <select id="produk">
+            <option disabled selected value="">Pilih</option>
+            <option>PRUCerah Plus</option>
+            <option>PRUWarisan</option>
+            <option>PRUlite</option>
+          </select>
+        </div>
+        <div class="field"><label>Uang Pertanggungan</label>
+          <div class="split">
+            <span class="unit">Rp</span>
+            <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 500000000"/>
+          </div>
+        </div>
+        <div class="field"><label>Tanggal Lahir</label><input id="dob" type="date" class="input" placeholder="yyyy-mm-dd"/></div>
+        <div class="field"><label>Masa Pembayaran</label>
+          <select id="masa">
+            <option disabled selected value="">Pilih</option>
+            <option>5 Tahun</option>
+            <option>10 Tahun</option>
+            <option>15 Tahun</option>
+            <option>20 Tahun</option>
+          </select>
+        </div>
+        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" placeholder="0812xxxxxxx"/></div>
+        <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
+      </div>
+      <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
+
+      <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+
+      <!-- RESULTS -->
+      <div class="results">
+        <div class="resultCard accent-warn">
+          <h4>Estimasi premi</h4>
+          <div id="premi" class="value">Rp – / tahun</div>
+        </div>
+        <div class="resultCard">
+          <h4>Diskon (khusus hari ini)</h4>
+          <div class="value"><span id="disc">0</span>%</div>
+        </div>
+        <div class="resultCard accent-ok">
+          <h4>Estimasi premi (setelah diskon)</h4>
+          <div id="premiNet" class="value">Rp – / tahun</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>Made with <a class="link" href="https://rows.com" target="_blank" rel="noreferrer noopener">Rows.com</a></div>
+        <div class="tiny">Tampilan prototipe • Untuk estimasi saja</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Helpers
+    const fmtIDR = (n) => n.toLocaleString('id-ID', { style:'currency', currency:'IDR', maximumFractionDigits:0 });
+    const getAge = (str) => { if(!str) return 0; const d=new Date(str), today=new Date(); let a=today.getFullYear()-d.getFullYear(); const m=today.getMonth()-d.getMonth(); if(m<0 || (m===0 && today.getDate()<d.getDate())) a--; return Math.max(0,a); };
+
+    // Dummy pricing model for demo purposes only
+    function estimatePremium({up, age, gender, produk, masa}){
+      if(!up || !age || !gender || !produk || !masa) return 0;
+      const base = up / 1_000_000 * 12; // base rate per Rp1jt UP
+      const ageF = 1 + Math.min(age, 65) * 0.02; // +2% per year of age
+      const gF = gender === 'L' ? 1.08 : 1.00; // male slightly higher risk
+      const prodF = {
+        'PRUCerah Plus': 0.85,
+        'PRUWarisan': 1.1,
+        'PRUlite': 0.75,
+      }[produk] || 1;
+      const term = parseInt(masa);
+      const termF = term >= 15 ? 0.92 : term >= 10 ? 0.96 : 1.0;
+      const p = Math.max(250000, base * ageF * gF * prodF * termF);
+      return Math.round(p);
+    }
+
+    function calc(){
+      const data = {
+        up: Number(document.getElementById('up').value.replace(/\D/g,'')),
+        age: getAge(document.getElementById('dob').value),
+        gender: document.getElementById('gender').value,
+        produk: document.getElementById('produk').value,
+        masa: (document.getElementById('masa').value || '').split(' ')[0],
+      };
+      const raw = estimatePremium(data);
+      const discPct = (data.produk === 'PRUlite' ? 7 : 3) + (data.masa >= 15 ? 2 : 0);
+      document.getElementById('disc').textContent = discPct;
+      if(raw>0){
+        document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
+        const net = Math.round(raw * (100 - discPct)/100);
+        document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
+      } else {
+        document.getElementById('premi').textContent = 'Rp – / tahun';
+        document.getElementById('premiNet').textContent = 'Rp – / tahun';
+      }
+    }
+
+    document.getElementById('hitung').addEventListener('click', calc);
+
+    // FILTER BAR logic: lightweight example that mirrors choices to the form + free-text query
+    const mirror = (src, dest) => src.addEventListener('change', () => { dest.value = src.value; });
+    mirror(document.getElementById('fGender'), document.getElementById('gender'));
+    mirror(document.getElementById('fProduct'), document.getElementById('produk'));
+
+    document.getElementById('resetFilter').addEventListener('click', () => {
+      document.getElementById('fGender').value='';
+      document.getElementById('fProduct').value='';
+      document.getElementById('q').value='';
+      // no list to filter, but keep function to demonstrate behavior
+    });
+
+    // Free-text bar demo: highlights matching fields as user types
+    const q = document.getElementById('q');
+    const fields = ['nama','wa','email'].map(id=>document.getElementById(id));
+    q.addEventListener('input', () => {
+      const term = q.value.trim().toLowerCase();
+      fields.forEach(el=>{
+        el.style.outline = term && el.value.toLowerCase().includes(term) ? '3px solid rgba(139,28,73,.25)' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
