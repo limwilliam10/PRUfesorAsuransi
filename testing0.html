@@ -93,23 +93,11 @@
       /* Errors */
     .error{border-color:#ef4444 !important; box-shadow:0 0 0 4px rgba(239,68,68,.15) !important}
     .errorMsg{color:#dc2626; font-size:12px; margin-top:4px}
-      /* Force visual order dd/mm/yyyy for WebKit/Blink (Chrome/Edge/Samsung Internet) */
-    input[type="date"]::-webkit-datetime-edit { display:flex; }
-    input[type="date"]::-webkit-datetime-edit-fields-wrapper{ display:flex; }
-    input[type="date"]::-webkit-datetime-edit-day-field{ order:1; }
-    input[type="date"]::-webkit-datetime-edit-month-field{ order:2; }
-    input[type="date"]::-webkit-datetime-edit-year-field{ order:3; }
-    input[type="date"]::-webkit-datetime-edit-text{ order:4; }
-      /* Date display overlay for dd-Mmm-yyyy */
-    .dateWrap{position:relative}
-    .dateWrap .dateNative{color:transparent; caret-color:transparent; position:relative; z-index:2; background:transparent}
-    .dateWrap .dateDisplay{position:absolute; inset:0; display:flex; align-items:center; padding:0 10px; pointer-events:none; color:var(--ink)}
-    .dateDisplay.empty{color:var(--muted)}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="title">Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
+    <div class="title">M Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
     <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
 
     <!-- FORM CARD -->
@@ -126,12 +114,7 @@
             <option value="P">Wanita</option>
           </select>
         </div>
-        <div class="field"><label>Tanggal Lahir</label>
-          <div class="dateWrap">
-            <input id="dob" type="date" class="input dateNative" lang="id-ID"/>
-            <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
-          </div>
-        </div>
+        <div class="field"><label>Tanggal Lahir</label><input id="dob" type="date" class="input" lang="id-ID"/></div>
         <div class="field"><label>Status merokok</label>
           <select id="smoke">
             <option disabled selected value="">Pilih</option>
@@ -375,21 +358,7 @@
     }
 
     // --- Summary helpers ---
-    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const toDisplayDMY = (ymd) => { if(!ymd) return ''; const [y,m,d] = ymd.split('-'); const idx = Math.max(0, Math.min(11, parseInt(m,10)-1)); return `${d}-${MONTH_ABBR[idx]}-${y}`; };
-    // Mirror formatted date into overlay span
-    const dobInput = document.getElementById('dob');
-    const dobDisplay = document.getElementById('dobDisplay');
-    function refreshDobDisplay(){
-      const ymd = dobInput.value;
-      if(ymd){ dobDisplay.textContent = toDisplayDMY(ymd); dobDisplay.classList.remove('empty'); }
-      else { dobDisplay.textContent = 'dd-Mmm-yyyy'; dobDisplay.classList.add('empty'); }
-    }
-    if(dobInput && dobDisplay){
-      dobInput.addEventListener('input', refreshDobDisplay);
-      dobInput.addEventListener('change', refreshDobDisplay);
-      refreshDobDisplay();
-    }
+    const toDisplayDMY = (ymd) => { if(!ymd) return ''; const [y,m,d] = ymd.split('-'); return [d,m,y].join('/'); };
     const selText = (id) => { const el = document.getElementById(id); return el && el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : ''; };
     function fillSummary(){
       const v = (id) => (document.getElementById(id).value || '').trim();
