@@ -78,7 +78,7 @@
     .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
     @media(max-width:640px){ .floatResults{left:12px; right:12px; bottom:12px; width:auto} }
       /* Floating modal overrides */
-    .floatResults{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:min(900px,92vw); max-width:calc(100dvw - 24px); max-height:92vh; max-height:calc(100dvh - 24px); overflow:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 24px 60px rgba(31,35,48,.28); z-index:100}
+    .floatResults{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(1); transform-origin:center center; width:min(900px,92vw); max-width:calc(100dvw - 24px); background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 24px 60px rgba(31,35,48,.28); z-index:100}
     .floatResults .floatBody{padding:16px}
     .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
     .closeBtn{position:absolute; top:8px; right:10px; border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer; color:#9aa0aa}
@@ -97,7 +97,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="title">Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
+    <div class="title">U Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
     <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
 
     <!-- FORM CARD -->
@@ -259,6 +259,7 @@
         document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
         document.getElementById('resultsFloat').classList.remove('hide');
         document.getElementById('resultsBackdrop').classList.remove('hide');
+        fitModal();
       } else {
         document.getElementById('premi').textContent = 'Rp – / tahun';
         document.getElementById('premiNet').textContent = 'Rp – / tahun';
@@ -373,6 +374,20 @@
       document.getElementById('s_masa').textContent = selText('masa') || '-';
     }
 
+    // Modal auto-fit to viewport (no internal scrolling)
+    function fitModal(){
+      const modal = document.getElementById('resultsFloat');
+      if(!modal || modal.classList.contains('hide')) return;
+      // reset to natural size first
+      modal.style.transform = 'translate(-50%,-50%) scale(1)';
+      const rect = modal.getBoundingClientRect();
+      const vw = Math.min(window.innerWidth || 0, document.documentElement.clientWidth || 0) || window.innerWidth;
+      const vh = Math.min(window.innerHeight || 0, document.documentElement.clientHeight || 0) || window.innerHeight;
+      const PAD = 24; // breathing room
+      const scale = Math.min(1, (vw - PAD) / rect.width, (vh - PAD) / rect.height);
+      modal.style.transform = `translate(-50%,-50%) scale(${scale})`;
+    }
+
     // Close / hide handlers
     function hideResults(){
       document.getElementById('resultsFloat').classList.add('hide');
@@ -381,6 +396,7 @@
     document.getElementById('closeResults').addEventListener('click', hideResults);
     document.getElementById('resultsBackdrop').addEventListener('click', hideResults);
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') hideResults(); });
+    window.addEventListener('resize', fitModal);
   </script>
 </body>
 </html>
