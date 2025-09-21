@@ -122,11 +122,21 @@
       <div class="cardHeader"></div>
       <div class="grid" id="formGrid">
         <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
+        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
+        <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
         <div class="field"><label>Jenis Kelamin</label>
           <select id="gender">
             <option disabled selected value="">Pilih</option>
             <option value="L">Pria</option>
             <option value="P">Wanita</option>
+          </select>
+        </div>
+        <div class="field"><label>Tanggal Lahir</label><input id="dob" type="date" class="input" lang="id-ID"/></div>
+        <div class="field"><label>Status merokok</label>
+          <select id="smoke">
+            <option disabled selected value="">Pilih</option>
+            <option value="Y">Perokok</option>
+            <option value="N">Bukan Perokok</option>
           </select>
         </div>
         <div class="field"><label>Nama Produk</label>
@@ -147,7 +157,6 @@
             <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 500.000.000"/>
           </div>
         </div>
-        <div class="field"><label>Tanggal Lahir</label><input id="dob" type="date" class="input" lang="id-ID"/></div>
         <div class="field"><label>Masa Pembayaran</label>
           <select id="masa">
             <option disabled selected value="">Pilih</option>
@@ -156,8 +165,6 @@
             <option>15 tahun</option>
           </select>
         </div>
-        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
-        <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
       </div>
       <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
 
