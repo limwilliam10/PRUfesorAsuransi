@@ -93,17 +93,21 @@
         <label for="fGender">Jenis Kelamin</label>
         <select id="fGender">
           <option value="">Semua</option>
-          <option value="L">Laki-laki</option>
-          <option value="P">Perempuan</option>
+          <option value="L">Pria</option>
+          <option value="P">Wanita</option>
         </select>
       </div>
       <div class="chip">
         <label for="fProduct">Produk</label>
         <select id="fProduct">
           <option value="">Semua</option>
-          <option>PRUCerah Plus</option>
-          <option>PRUWarisan</option>
-          <option>PRUlite</option>
+          <option>PRUCritical Amanah (Basic)</option>
+          <option>PRUCritical Amanah (Plus)</option>
+          <option>PCB88</option>
+          <option>PRUAnugerah</option>
+          <option>PRUFuture</option>
+          <option>PRUCinta</option>
+          <option>PRUHeritage</option>
         </select>
       </div>
       <div class="search" title="Free-text bar">
@@ -121,25 +125,29 @@
         <div class="field"><label>Jenis Kelamin</label>
           <select id="gender">
             <option disabled selected value="">Pilih</option>
-            <option value="L">Laki-laki</option>
-            <option value="P">Perempuan</option>
+            <option value="L">Pria</option>
+            <option value="P">Wanita</option>
           </select>
         </div>
         <div class="field"><label>Nama Produk</label>
           <select id="produk">
             <option disabled selected value="">Pilih</option>
-            <option>PRUCerah Plus</option>
-            <option>PRUWarisan</option>
-            <option>PRUlite</option>
+            <option>PRUCritical Amanah (Basic)</option>
+            <option>PRUCritical Amanah (Plus)</option>
+            <option>PCB88</option>
+            <option>PRUAnugerah</option>
+            <option>PRUFuture</option>
+            <option>PRUCinta</option>
+            <option>PRUHeritage</option>
           </select>
         </div>
         <div class="field"><label>Uang Pertanggungan</label>
           <div class="split">
             <span class="unit">Rp</span>
-            <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 500000000"/>
+            <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 500.000.000"/>
           </div>
         </div>
-        <div class="field"><label>Tanggal Lahir</label><input id="dob" type="date" class="input" placeholder="yyyy-mm-dd"/></div>
+        <div class="field"><label>Tanggal Lahir</label><input id="dob" type="date" class="input" lang="id-ID"/></div>
         <div class="field"><label>Masa Pembayaran</label>
           <select id="masa">
             <option disabled selected value="">Pilih</option>
@@ -149,7 +157,7 @@
             <option>20 Tahun</option>
           </select>
         </div>
-        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" placeholder="0812xxxxxxx"/></div>
+        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
         <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
       </div>
       <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
@@ -182,18 +190,32 @@
   <script>
     // Helpers
     const fmtIDR = (n) => n.toLocaleString('id-ID', { style:'currency', currency:'IDR', maximumFractionDigits:0 });
-    const getAge = (str) => { if(!str) return 0; const d=new Date(str), today=new Date(); let a=today.getFullYear()-d.getFullYear(); const m=today.getMonth()-d.getMonth(); if(m<0 || (m===0 && today.getDate()<d.getDate())) a--; return Math.max(0,a); };
+    function getAgeFromDateInput(ymd){
+      if(!ymd) return 0; // value from <input type="date"> is yyyy-mm-dd
+      const [y,m,d] = ymd.split('-').map(Number);
+      if(!y||!m||!d) return 0;
+      const dob = new Date(y, m-1, d);
+      const today = new Date();
+      let a = today.getFullYear() - dob.getFullYear();
+      const mm = today.getMonth() - dob.getMonth();
+      if(mm < 0 || (mm === 0 && today.getDate() < dob.getDate())) a--;
+      return Math.max(0,a);
+    }
 
     // Dummy pricing model for demo purposes only
     function estimatePremium({up, age, gender, produk, masa}){
       if(!up || !age || !gender || !produk || !masa) return 0;
-      const base = up / 1_000_000 * 12; // base rate per Rp1jt UP
-      const ageF = 1 + Math.min(age, 65) * 0.02; // +2% per year of age
-      const gF = gender === 'L' ? 1.08 : 1.00; // male slightly higher risk
+      const base = up / 1_000_000 * 12;
+      const ageF = 1 + Math.min(age, 65) * 0.02;
+      const gF = gender === 'L' ? 1.08 : 1.00;
       const prodF = {
-        'PRUCerah Plus': 0.85,
-        'PRUWarisan': 1.1,
-        'PRUlite': 0.75,
+        'PRUCritical Amanah (Basic)': 0.9,
+        'PRUCritical Amanah (Plus)': 1.0,
+        'PCB88': 1.1,
+        'PRUAnugerah': 1.05,
+        'PRUFuture': 0.95,
+        'PRUCinta': 1.0,
+        'PRUHeritage': 1.2,
       }[produk] || 1;
       const term = parseInt(masa);
       const termF = term >= 15 ? 0.92 : term >= 10 ? 0.96 : 1.0;
@@ -204,13 +226,13 @@
     function calc(){
       const data = {
         up: Number(document.getElementById('up').value.replace(/\D/g,'')),
-        age: getAge(document.getElementById('dob').value),
+        age: getAgeFromDateInput(document.getElementById('dob').value),
         gender: document.getElementById('gender').value,
         produk: document.getElementById('produk').value,
         masa: (document.getElementById('masa').value || '').split(' ')[0],
       };
       const raw = estimatePremium(data);
-      const discPct = (data.produk === 'PRUlite' ? 7 : 3) + (data.masa >= 15 ? 2 : 0);
+      const discPct = (data.produk === 'PRUCinta' ? 7 : 3) + (data.masa >= 15 ? 2 : 0);
       document.getElementById('disc').textContent = discPct;
       if(raw>0){
         document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
@@ -224,7 +246,7 @@
 
     document.getElementById('hitung').addEventListener('click', calc);
 
-    // FILTER BAR logic: lightweight example that mirrors choices to the form + free-text query
+    // FILTER BAR logic
     const mirror = (src, dest) => src.addEventListener('change', () => { dest.value = src.value; });
     mirror(document.getElementById('fGender'), document.getElementById('gender'));
     mirror(document.getElementById('fProduct'), document.getElementById('produk'));
@@ -233,10 +255,9 @@
       document.getElementById('fGender').value='';
       document.getElementById('fProduct').value='';
       document.getElementById('q').value='';
-      // no list to filter, but keep function to demonstrate behavior
     });
 
-    // Free-text bar demo: highlights matching fields as user types
+    // Free-text bar demo
     const q = document.getElementById('q');
     const fields = ['nama','wa','email'].map(id=>document.getElementById(id));
     q.addEventListener('input', () => {
@@ -244,6 +265,21 @@
       fields.forEach(el=>{
         el.style.outline = term && el.value.toLowerCase().includes(term) ? '3px solid rgba(139,28,73,.25)' : 'none';
       });
+    });
+
+    // --- Input restrictions & formatting ---
+    // Uang Pertanggungan: angka saja + thousand separator saat mengetik
+    const upField = document.getElementById('up');
+    const nfID = new Intl.NumberFormat('id-ID');
+    upField.addEventListener('input', () => {
+      const digits = upField.value.replace(/\D/g,'');
+      upField.value = digits ? nfID.format(Number(digits)) : '';
+    });
+
+    // WA: angka saja
+    const waField = document.getElementById('wa');
+    waField.addEventListener('input', () => {
+      waField.value = waField.value.replace(/\D/g,'');
     });
   </script>
 </body>
