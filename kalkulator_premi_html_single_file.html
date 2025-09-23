@@ -134,7 +134,7 @@
     <div class="spinner"></div>
   </div>
   <div class="wrap">
-    <div class="title">L Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
+    <div class="title">Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
     <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
 
     <!-- FORM CARD -->
@@ -266,6 +266,7 @@
     // URL dari Google Sheet yang sudah di-publish sebagai CSV
     const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSAJCvm0ndyO4WJr_HZGPtrZE_zxZTKmf_A_bYNbnkUa5KVpEtymfSew5glyl9FQoEOPe4e_XyMOG7/pub?gid=0&single=true&output=csv';
     const GOOGLE_SHEET_DISCOUNT_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSAJCvm0ndyO4WJr_HZGPtrZE_zxZTKmf_A_bYNbnkUa5KVpEtymfSew5glyl9FQoEOPe4e_XyMOG7/pub?gid=1035821418&single=true&output=csv';
+    const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJGLWDt4d-npwDy_5mpcds8kJE7ivwfqn-n8dcHJa1OluPcASMe1Mb1xTVuFiORqXw/exec';
 
     // Fungsi baru untuk mengambil data dan mencari premi
     async function estimatePremium({up, age, gender, produk, masa, smoke}) {
@@ -351,6 +352,21 @@
       }
     }
 
+    // Fungsi baru untuk mengirim (log) data ke Google Sheet via Apps Script
+    function logDataToSheet(logData) {
+      // Kita tidak perlu 'await' proses ini, biarkan berjalan di background agar user tidak perlu menunggu
+      fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Penting untuk menghindari error CORS saat mengirim ke Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(logData)
+      })
+      .then(response => console.log('Log berhasil.'))
+      .catch(error => console.error('Log gagal:', error));
+    }
+
     // Ubah fungsi calc menjadi async untuk menunggu hasil dari estimatePremium
     // Ganti seluruh fungsi calc Anda dengan yang ini
     async function calc() {
@@ -382,8 +398,10 @@
 
         const raw = await estimatePremium(data); 
         const discPct = await getDiscountPercentage({ produk: data.produk, up: data.up });
+        
         document.getElementById('disc').textContent = discPct;
         
+        let net = 0; // Inisialisasi premi final
         if (raw > 0) {
           document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
           const premiSetelahDiskon = raw * (100 - discPct) / 100;
@@ -393,6 +411,26 @@
           document.getElementById('premi').textContent = 'Data tidak ditemukan';
           document.getElementById('premiNet').textContent = 'Data tidak ditemukan';
         }
+
+        // Siapkan data untuk dikirim ke Google Sheet
+        const logPayload = {
+          nama: document.getElementById('nama').value,
+          wa: document.getElementById('wa').value,
+          email: document.getElementById('email').value,
+          gender: data.gender,
+          dob: document.getElementById('dob').value,
+          smoke: data.smoke,
+          produk: data.produk,
+          up: data.up,
+          masa: data.masa,
+          premiAwal: raw,
+          diskon: discPct,
+          premiFinal: net,
+          userAgent: navigator.userAgent // Info browser dan device
+        };
+        // Panggil fungsi untuk mengirim data ke log
+        logDataToSheet(logPayload);
+        // -------------------------
         
         // Tampilkan jendela hasil
         document.getElementById('resultsFloat').classList.remove('hide');
