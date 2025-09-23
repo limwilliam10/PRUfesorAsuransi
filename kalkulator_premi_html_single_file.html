@@ -109,7 +109,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="title">D Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
+    <div class="title">Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
     <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
 
     <!-- FORM CARD -->
@@ -356,7 +356,8 @@
       
       if (raw > 0) {
         document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
-        const net = Math.round(raw * (100 - discPct) / 100);
+        const premiSetelahDiskon = raw * (100 - discPct) / 100;
+        const net = Math.round(premiSetelahDiskon / 1000) * 1000;
         document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
         document.getElementById('resultsFloat').classList.remove('hide');
         document.getElementById('resultsBackdrop').classList.remove('hide');
