@@ -133,7 +133,7 @@ async function calc() {
     if (raw > 0) {
         kalkulatorContainer.querySelector('#premi').textContent = fmtIDR(raw) + ' / tahun';
         const premiSetelahDiskon = raw * (100 - discPct) / 100;
-        const net = Math.round(premiSetelahDiskon / 1000) * 1000;
+        net = Math.round(premiSetelahDiskon / 1000) * 1000;
         kalkulatorContainer.querySelector('#premiNet').textContent = fmtIDR(net) + ' / tahun';
     } else {
         kalkulatorContainer.querySelector('#premi').textContent = 'Data tidak ditemukan';
