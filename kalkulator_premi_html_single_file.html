@@ -33,8 +33,6 @@
     .title{font-weight:800; font-size:22px; letter-spacing:.2px; margin:8px 0 14px}
     .subtitle{color:var(--muted); font-size:13px; margin-bottom:18px}
 
-    
-
     /* Card */
     .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 5px 18px rgba(28,18,48,.05); overflow:hidden}
     .cardHeader{padding:18px 18px 0}
@@ -70,6 +68,30 @@
     .tiny{font-size:11px}
 
     .powered{padding:12px 18px; text-align:center; color:#b45475; font-weight:700}
+
+    /* --- CSS UNTUK LOADER --- */
+    .loader-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(2px); /* Efek blur opsional */
+    }
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #e6e6ea; /* Warna track spinner */
+      border-top: 5px solid var(--brand); /* Warna utama spinner */
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
     /* Utilities used by filter/search scripting */
     .hide{display:none !important}
@@ -108,6 +130,9 @@
   </style>
 </head>
 <body>
+  <div id="loader" class="loader-backdrop hide">
+    <div class="spinner"></div>
+  </div>
   <div class="wrap">
     <div class="title">Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
     <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
@@ -327,6 +352,7 @@
     }
 
     // Ubah fungsi calc menjadi async untuk menunggu hasil dari estimatePremium
+    // Ganti seluruh fungsi calc Anda dengan yang ini
     async function calc() {
       if (!validateForm()) {
         const rf = document.getElementById('resultsFloat');
@@ -336,39 +362,50 @@
         return;
       }
       
-      const masaText = document.getElementById('masa').value || '';
-      const data = {
-        up: Number(document.getElementById('up').value.replace(/[^0-9]/g, '')),
-        age: getAgeFromDateInput(document.getElementById('dob').value),
-        gender: document.getElementById('gender').value,
-        produk: document.getElementById('produk').value,
-        masa: parseInt((masaText.match(/[0-9]+/) || [''])[0], 10) || 0,
-        smoke: document.getElementById('smoke').value, // Ambil status merokok
-      };
-
-      fillSummary();
-
-      // Gunakan 'await' karena fungsi estimatePremium sekarang bersifat asynchronous
-      const raw = await estimatePremium(data); 
-
-      const discPct = await getDiscountPercentage({ produk: data.produk, up: data.up });
-      document.getElementById('disc').textContent = discPct;
+      const loader = document.getElementById('loader');
       
-      if (raw > 0) {
-        document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
-        const premiSetelahDiskon = raw * (100 - discPct) / 100;
-        const net = Math.round(premiSetelahDiskon / 1000) * 1000;
-        document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
+      try {
+        // ---> 1. Tampilkan loader saat perhitungan dimulai
+        loader.classList.remove('hide');
+
+        const masaText = document.getElementById('masa').value || '';
+        const data = {
+          up: Number(document.getElementById('up').value.replace(/[^0-9]/g, '')),
+          age: getAgeFromDateInput(document.getElementById('dob').value),
+          gender: document.getElementById('gender').value,
+          produk: document.getElementById('produk').value,
+          masa: parseInt((masaText.match(/[0-9]+/) || [''])[0], 10) || 0,
+          smoke: document.getElementById('smoke').value,
+        };
+
+        fillSummary();
+
+        const raw = await estimatePremium(data); 
+        const discPct = await getDiscountPercentage({ produk: data.produk, up: data.up });
+        document.getElementById('disc').textContent = discPct;
+        
+        if (raw > 0) {
+          document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
+          const premiSetelahDiskon = raw * (100 - discPct) / 100;
+          const net = Math.round(premiSetelahDiskon / 1000) * 1000;
+          document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
+        } else {
+          document.getElementById('premi').textContent = 'Data tidak ditemukan';
+          document.getElementById('premiNet').textContent = 'Data tidak ditemukan';
+        }
+        
+        // Tampilkan jendela hasil
         document.getElementById('resultsFloat').classList.remove('hide');
         document.getElementById('resultsBackdrop').classList.remove('hide');
         requestAnimationFrame(fitModal);
-      } else {
-        // Tampilkan pesan jika data tidak ditemukan
-        document.getElementById('premi').textContent = 'Data tidak ditemukan';
-        document.getElementById('premiNet').textContent = 'Data tidak ditemukan';
-        document.getElementById('resultsFloat').classList.remove('hide');
-        document.getElementById('resultsBackdrop').classList.remove('hide');
-        requestAnimationFrame(fitModal);
+
+      } catch (error) {
+        // Jika terjadi error, catat di console dan beritahu user
+        console.error("Terjadi kesalahan saat kalkulasi:", error);
+        alert("Gagal memproses data. Silakan coba lagi.");
+      } finally {
+        // ---> 2. Sembunyikan loader setelah semuanya selesai (baik berhasil maupun gagal)
+        loader.classList.add('hide');
       }
     }
 
