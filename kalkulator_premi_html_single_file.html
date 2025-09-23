@@ -109,7 +109,7 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="title">Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
+    <div class="title">D Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
     <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
 
     <!-- FORM CARD -->
@@ -132,7 +132,7 @@
             <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
           </div>
         </div>
-        <div class="field"><label>Status merokok</label>
+        <div class="field"><label>Status Merokok</label>
           <select id="smoke">
             <option disabled selected value="">Pilih</option>
             <option value="Perokok">Perokok</option>
@@ -182,7 +182,7 @@
             <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
             <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
             <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
-            <div class="item"><span class="label">Status merokok</span><span class="val" id="s_smoke">-</span></div>
+            <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
             <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
             <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
             <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
@@ -240,6 +240,7 @@
 
     // URL dari Google Sheet yang sudah di-publish sebagai CSV
     const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSAJCvm0ndyO4WJr_HZGPtrZE_zxZTKmf_A_bYNbnkUa5KVpEtymfSew5glyl9FQoEOPe4e_XyMOG7/pub?gid=0&single=true&output=csv';
+    const GOOGLE_SHEET_DISCOUNT_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSAJCvm0ndyO4WJr_HZGPtrZE_zxZTKmf_A_bYNbnkUa5KVpEtymfSew5glyl9FQoEOPe4e_XyMOG7/pub?gid=1035821418&single=true&output=csv';
 
     // Fungsi baru untuk mengambil data dan mencari premi
     async function estimatePremium({up, age, gender, produk, masa, smoke}) {
@@ -285,6 +286,46 @@
       }
     }
 
+    // Fungsi baru untuk mengambil data diskon
+    async function getDiscountPercentage({produk, up}) {
+      if (!produk || !up) return 0; // Kembalikan 0 jika data tidak lengkap
+
+      try {
+        const response = await fetch(GOOGLE_SHEET_DISCOUNT_URL);
+        if (!response.ok) {
+          console.error('Gagal mengambil data diskon dari Google Sheet.');
+          return 0;
+        }
+
+        const csvText = await response.text();
+        // Hapus baris header dan baris kosong
+        const rows = csvText.split('\n').slice(1).filter(row => row).map(row => row.split(','));
+
+        // Mencari baris diskon yang cocok
+        // Format di CSV: [Produk, Min UP, Max UP, Diskon]
+        const foundRow = rows.find(row => {
+          const csvProduk = row[0];
+          const csvMinUP = Number(row[1]);
+          const csvMaxUP = Number(row[2]);
+
+          // Cek apakah produknya cocok DAN UP berada di dalam rentang
+          return produk === csvProduk && up >= csvMinUP && up <= csvMaxUP;
+        });
+
+        if (foundRow) {
+          // Kolom D (indeks ke-3) adalah persentase diskon
+          return Number(foundRow[3]);
+        } else {
+          console.warn('Skema diskon tidak ditemukan untuk produk dan UP ini.');
+          return 0; // Diskon default jika tidak ada yang cocok
+        }
+
+      } catch (error) {
+        console.error('Terjadi error saat memproses data diskon:', error);
+        return 0;
+      }
+    }
+
     // Ubah fungsi calc menjadi async untuk menunggu hasil dari estimatePremium
     async function calc() {
       if (!validateForm()) {
@@ -310,7 +351,7 @@
       // Gunakan 'await' karena fungsi estimatePremium sekarang bersifat asynchronous
       const raw = await estimatePremium(data); 
 
-      const discPct = (data.produk === 'PRUCinta' ? 7 : 3) + (data.masa >= 15 ? 2 : 0);
+      const discPct = await getDiscountPercentage({ produk: data.produk, up: data.up });
       document.getElementById('disc').textContent = discPct;
       
       if (raw > 0) {
