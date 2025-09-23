@@ -1,0 +1,126 @@
+body {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;         /* Standar */
+}
+
+:root{
+    --bg:#faf9fb;
+    --card:#ffffff;
+    --ink:#1f2330;
+    --muted:#6b7280;
+    --brand:#3c0b2b; /* maroon */
+    --brand-2:#8b1c49; /* accent */
+    --stroke:#e6e6ea;
+    --focus:#bba2c3;
+    --ok:#e3f6ef;
+    --warn:#fde2e2;
+    --radius:16px;
+}
+#kalkulator-premi-container *{box-sizing:border-box}
+html,#kalkulator-premi-container {height:100%}
+#kalkulator-premi-container {
+    margin:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45;
+}
+#kalkulator-premi-container .wrap{max-width:980px; margin:24px auto 80px; padding:0 16px}
+
+/* Header */
+#kalkulator-premi-container .title{font-weight:800; font-size:22px; letter-spacing:.2px; margin:8px 0 14px}
+#kalkulator-premi-container .subtitle{color:var(--muted); font-size:13px; margin-bottom:18px}
+
+/* Card */
+#kalkulator-premi-container .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 5px 18px rgba(28,18,48,.05); overflow:hidden}
+#kalkulator-premi-container .cardHeader{padding:18px 18px 0}
+#kalkulator-premi-container .grid{display:grid; grid-template-columns:1fr; gap:12px; padding:18px}
+@media(min-width:720px){#kalkulator-premi-container .grid{grid-template-columns:repeat(2,1fr)} }
+@media(min-width:960px){#kalkulator-premi-container .grid{grid-template-columns:repeat(3,1fr)} }
+
+label{font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.2px}
+#kalkulator-premi-container .field{display:flex; flex-direction:column; gap:6px}
+#kalkulator-premi-container .input, select, input[type="date"]{height:38px; width:100%; border:1px solid var(--stroke); border-radius:10px; padding:8px 10px; font-size:14px; outline:none; background:#fff}
+#kalkulator-premi-container .input:focus, select:focus, input[type="date"]:focus{border-color:#cdb4d9; box-shadow:0 0 0 4px rgba(187,162,195,.18)}
+
+#kalkulator-premi-container .split{display:flex; align-items:center; gap:10px}
+#kalkulator-premi-container .split .unit{color:var(--muted); font-size:13px}
+#kalkulator-premi-container .split .input{flex:1}
+
+#kalkulator-premi-container .actions{display:flex; justify-content:center; padding:10px 18px 22px}
+#kalkulator-premi-container .btn{appearance:none; border:none; background:var(--brand); color:#fff; height:40px; padding:0 18px; border-radius:10px; font-weight:700; letter-spacing:.2px; cursor:pointer}
+#kalkulator-premi-container .btn:hover{background:#2d081f}
+
+/* Results */
+#kalkulator-premi-container .results{display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; padding:0 18px 18px}
+@media(min-width:720px){#kalkulator-premi-container .results{grid-template-columns:repeat(3,1fr)} }
+#kalkulator-premi-container .resultCard{border:1px solid var(--stroke); border-radius:14px; padding:14px}
+#kalkulator-premi-container .resultCard h4{margin:0 0 6px; font-size:12px; color:var(--muted); letter-spacing:.2px}
+#kalkulator-premi-container .resultCard .value{font-size:20px; font-weight:800}
+#kalkulator-premi-container .accent-warn{background:var(--warn)}
+#kalkulator-premi-container .accent-ok{background:var(--ok)}
+#kalkulator-premi-container .muted{color:var(--muted)}
+
+#kalkulator-premi-container .footer{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:18px; border-top:1px dashed var(--stroke); font-size:12px; color:var(--muted)}
+#kalkulator-premi-container .link{color:var(--brand-2); text-decoration:none; font-weight:700}
+#kalkulator-premi-container .tiny{font-size:11px}
+
+#kalkulator-premi-container .powered{padding:12px 18px; text-align:center; color:#b45475; font-weight:700}
+
+/* --- CSS UNTUK LOADER --- */
+#kalkulator-premi-container .loader-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px); /* Efek blur opsional */
+}
+#kalkulator-premi-container .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #e6e6ea; /* Warna track spinner */
+    border-top: 5px solid var(--brand); /* Warna utama spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Utilities used by filter/search scripting */
+#kalkulator-premi-container .hide{display:none !important}
+    /* Floating Results (hidden by default) */
+/* legacy float style removed to avoid conflicts */
+#kalkulator-premi-container .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
+
+    /* Floating modal overrides */
+#kalkulator-premi-container .floatResults{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(1); transform-origin:center center; width:min(900px,92vw); max-width:calc(100dvw - 24px); overflow:hidden; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 24px 60px rgba(31,35,48,.28); z-index:100; will-change:transform; box-sizing:border-box}
+#kalkulator-premi-container .floatResults .floatBody{padding:16px}
+#kalkulator-premi-container .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
+#kalkulator-premi-container .closeBtn{position:absolute; top:8px; right:10px; border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer; color:#9aa0aa}
+#kalkulator-premi-container .closeBtn:hover{color:#5b616a}
+#kalkulator-premi-container .summaryGrid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+#kalkulator-premi-container .summaryGrid .item{border:1px dashed var(--stroke); border-radius:10px; padding:8px 10px}
+#kalkulator-premi-container .summaryGrid .label{display:block; font-size:11px; color:var(--muted); letter-spacing:.2px}
+#kalkulator-premi-container .summaryGrid .val{font-weight:700}
+#kalkulator-premi-container .modalBackdrop{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:90}
+@media(max-width:960px){#kalkulator-premi-container .summaryGrid{grid-template-columns:repeat(2,1fr)} }
+@media(max-width:640px){#kalkulator-premi-container .summaryGrid{grid-template-columns:1fr} }
+    /* Errors */
+#kalkulator-premi-container .error{border-color:#ef4444 !important; box-shadow:0 0 0 4px rgba(239,68,68,.15) !important}
+#kalkulator-premi-container .errorMsg{color:#dc2626; font-size:12px; margin-top:4px}
+    /* Force visual order dd/mm/yyyy for WebKit/Blink (Chrome/Edge/Samsung Internet) */
+input[type="date"]::-webkit-datetime-edit { display:flex; }
+input[type="date"]::-webkit-datetime-edit-fields-wrapper{ display:flex; }
+input[type="date"]::-webkit-datetime-edit-day-field{ order:1; }
+input[type="date"]::-webkit-datetime-edit-month-field{ order:2; }
+input[type="date"]::-webkit-datetime-edit-year-field{ order:3; }
+input[type="date"]::-webkit-datetime-edit-text{ order:4; }
+    /* Date display overlay for dd-Mmm-yyyy */
+#kalkulator-premi-container .dateWrap{position:relative}
+#kalkulator-premi-container .dateWrap .dateNative{color:transparent; caret-color:transparent; position:relative; z-index:2; background:transparent}
+#kalkulator-premi-container .dateWrap .dateDisplay{position:absolute; inset:0; display:flex; align-items:center; padding:0 10px; pointer-events:none; color:var(--ink)}
+#kalkulator-premi-container .dateDisplay.empty{color:var(--muted)}

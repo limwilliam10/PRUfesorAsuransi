@@ -3,22 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Kalkulator Internal USTeams | W&G PRUfesor Asuransi</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -31,106 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#faf9fb;
-      --card:#ffffff;
-      --ink:#1f2330;
-      --muted:#6b7280;
-      --brand:#3c0b2b; /* maroon */
-      --brand-2:#8b1c49; /* accent */
-      --stroke:#e6e6ea;
-      --focus:#bba2c3;
-      --ok:#e3f6ef;
-      --warn:#fde2e2;
-      --radius:16px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      line-height:1.45;
-    }
-    .wrap{max-width:980px; margin:24px auto 80px; padding:0 16px}
-
-    /* Header */
-    .title{font-weight:800; font-size:22px; letter-spacing:.2px; margin:8px 0 14px}
-    .subtitle{color:var(--muted); font-size:13px; margin-bottom:18px}
-
-    
-
-    /* Card */
-    .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 5px 18px rgba(28,18,48,.05); overflow:hidden}
-    .cardHeader{padding:18px 18px 0}
-    .grid{display:grid; grid-template-columns:1fr; gap:12px; padding:18px}
-    @media(min-width:720px){ .grid{grid-template-columns:repeat(2,1fr)} }
-    @media(min-width:960px){ .grid{grid-template-columns:repeat(3,1fr)} }
-
-    label{font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.2px}
-    .field{display:flex; flex-direction:column; gap:6px}
-    .input, select, input[type="date"]{height:38px; width:100%; border:1px solid var(--stroke); border-radius:10px; padding:8px 10px; font-size:14px; outline:none; background:#fff}
-    .input:focus, select:focus, input[type="date"]:focus{border-color:#cdb4d9; box-shadow:0 0 0 4px rgba(187,162,195,.18)}
-
-    .split{display:flex; align-items:center; gap:10px}
-    .split .unit{color:var(--muted); font-size:13px}
-    .split .input{flex:1}
-
-    .actions{display:flex; justify-content:center; padding:10px 18px 22px}
-    .btn{appearance:none; border:none; background:var(--brand); color:#fff; height:40px; padding:0 18px; border-radius:10px; font-weight:700; letter-spacing:.2px; cursor:pointer}
-    .btn:hover{background:#2d081f}
-
-    /* Results */
-    .results{display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; padding:0 18px 18px}
-    @media(min-width:720px){ .results{grid-template-columns:repeat(3,1fr)} }
-    .resultCard{border:1px solid var(--stroke); border-radius:14px; padding:14px}
-    .resultCard h4{margin:0 0 6px; font-size:12px; color:var(--muted); letter-spacing:.2px}
-    .resultCard .value{font-size:20px; font-weight:800}
-    .accent-warn{background:var(--warn)}
-    .accent-ok{background:var(--ok)}
-    .muted{color:var(--muted)}
-
-    .footer{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:18px; border-top:1px dashed var(--stroke); font-size:12px; color:var(--muted)}
-    .link{color:var(--brand-2); text-decoration:none; font-weight:700}
-    .tiny{font-size:11px}
-
-    .powered{padding:12px 18px; text-align:center; color:#b45475; font-weight:700}
-
-    /* Utilities used by filter/search scripting */
-    .hide{display:none !important}
-      /* Floating Results (hidden by default) */
-    /* legacy float style removed to avoid conflicts */
-    .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
-    
-      /* Floating modal overrides */
-    .floatResults{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(1); transform-origin:center center; width:min(900px,92vw); max-width:calc(100dvw - 24px); overflow:hidden; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 24px 60px rgba(31,35,48,.28); z-index:100; will-change:transform; box-sizing:border-box}
-    .floatResults .floatBody{padding:16px}
-    .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
-    .closeBtn{position:absolute; top:8px; right:10px; border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer; color:#9aa0aa}
-    .closeBtn:hover{color:#5b616a}
-    .summaryGrid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
-    .summaryGrid .item{border:1px dashed var(--stroke); border-radius:10px; padding:8px 10px}
-    .summaryGrid .label{display:block; font-size:11px; color:var(--muted); letter-spacing:.2px}
-    .summaryGrid .val{font-weight:700}
-    .modalBackdrop{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:90}
-    @media(max-width:960px){ .summaryGrid{grid-template-columns:repeat(2,1fr)} }
-    @media(max-width:640px){ .summaryGrid{grid-template-columns:1fr} }
-      /* Errors */
-    .error{border-color:#ef4444 !important; box-shadow:0 0 0 4px rgba(239,68,68,.15) !important}
-    .errorMsg{color:#dc2626; font-size:12px; margin-top:4px}
-      /* Force visual order dd/mm/yyyy for WebKit/Blink (Chrome/Edge/Samsung Internet) */
-    input[type="date"]::-webkit-datetime-edit { display:flex; }
-    input[type="date"]::-webkit-datetime-edit-fields-wrapper{ display:flex; }
-    input[type="date"]::-webkit-datetime-edit-day-field{ order:1; }
-    input[type="date"]::-webkit-datetime-edit-month-field{ order:2; }
-    input[type="date"]::-webkit-datetime-edit-year-field{ order:3; }
-    input[type="date"]::-webkit-datetime-edit-text{ order:4; }
-      /* Date display overlay for dd-Mmm-yyyy */
-    .dateWrap{position:relative}
-    .dateWrap .dateNative{color:transparent; caret-color:transparent; position:relative; z-index:2; background:transparent}
-    .dateWrap .dateDisplay{position:absolute; inset:0; display:flex; align-items:center; padding:0 10px; pointer-events:none; color:var(--ink)}
-    .dateDisplay.empty{color:var(--muted)}
-  </style>
+  <link href="assets/css/kalkulator.css" rel="stylesheet">
 
 </head>
 
@@ -158,8 +55,15 @@
     <!-- End Breadcrumbs -->
 
     <section class="inner-page">
-      <div class="container" data-aos="fade-up">
-        <!-- FORM CARD -->
+      <div id="kalkulator-premi-container">
+    <div id="loader" class="loader-backdrop hide">
+    <div class="spinner"></div>
+  </div>
+  <div class="wrap">
+    <div class="title">M Kalkulator Premi Asuransi Jiwa <span class="muted">(Internal USTeams)</span></div>
+    <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Tampilan dirancang menyerupai contoh.</div>
+
+    <!-- FORM CARD -->
     <div class="card" id="formCard" style="margin-top:14px">
       <div class="cardHeader"></div>
       <div class="grid" id="formGrid">
@@ -169,8 +73,8 @@
         <div class="field"><label>Jenis Kelamin</label>
           <select id="gender">
             <option disabled selected value="">Pilih</option>
-            <option value="L">Pria</option>
-            <option value="P">Wanita</option>
+            <option value="Pria">Pria</option>
+            <option value="Wanita">Wanita</option>
           </select>
         </div>
         <div class="field"><label>Tanggal Lahir</label>
@@ -179,11 +83,11 @@
             <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
           </div>
         </div>
-        <div class="field"><label>Status merokok</label>
+        <div class="field"><label>Status Merokok</label>
           <select id="smoke">
             <option disabled selected value="">Pilih</option>
-            <option value="Y">Perokok</option>
-            <option value="N">Bukan Perokok</option>
+            <option value="Perokok">Perokok</option>
+            <option value="Bukan Perokok">Bukan Perokok</option>
           </select>
         </div>
         <div class="field"><label>Nama Produk</label>
@@ -229,7 +133,7 @@
             <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
             <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
             <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
-            <div class="item"><span class="label">Status merokok</span><span class="val" id="s_smoke">-</span></div>
+            <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
             <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
             <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
             <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
@@ -260,234 +164,7 @@
       </div>
     </div>
   </div>
-
-  <script>
-    // Helpers
-    const fmtIDR = (n) => n.toLocaleString('id-ID', { style:'currency', currency:'IDR', maximumFractionDigits:0 });
-    function getAgeFromDateInput(ymd){
-      if(!ymd) return 0; // value from <input type="date"> is yyyy-mm-dd
-      const [y,m,d] = ymd.split('-').map(Number);
-      if(!y||!m||!d) return 0;
-      const today = new Date();
-      const tM = today.getMonth() + 1;
-      const tD = today.getDate();
-      const base = today.getFullYear() - y; // year difference
-      const passed = (tM > m) || (tM === m && tD > d);       // ulang tahun SUDAH lewat tahun ini
-      const todayIs = (tM === m && tD === d);                // tepat hari ulang tahun
-
-      // Age Last Birthday baseline
-      let age = base;
-      if(!passed && !todayIs) age = base - 1;                // ulang tahun BELUM lewat → kurangi 1
-
-      // Business rule: jika ulang tahun sudah lewat (strict), gunakan "usia berikutnya"
-      if(passed) age = age + 1;
-
-      return Math.max(0, age);
-    }
-
-    // Dummy pricing model for demo purposes only
-    function estimatePremium({up, age, gender, produk, masa}){
-      if(!up || !age || !gender || !produk || !masa) return 0;
-      const base = up / 1_000_000 * 12;
-      const ageF = 1 + Math.min(age, 65) * 0.02;
-      const gF = gender === 'L' ? 1.08 : 1.00;
-      const prodF = {
-        'PRUCritical Amanah (Basic)': 0.9,
-        'PRUCritical Amanah (Plus)': 1.0,
-        'PCB88': 1.1,
-        'PRUAnugerah': 1.05,
-        'PRUFuture': 0.95,
-        'PRUCinta': 1.0,
-        'PRUHeritage': 1.2,
-      }[produk] || 1;
-      const term = parseInt(masa);
-      const termF = term >= 15 ? 0.92 : term >= 10 ? 0.96 : 1.0;
-      const p = Math.max(250000, base * ageF * gF * prodF * termF);
-      return Math.round(p);
-    }
-
-    function calc(){
-      if(!validateForm()){
-        const rf=document.getElementById('resultsFloat');
-        const rb=document.getElementById('resultsBackdrop');
-        if(rf) rf.classList.add('hide');
-        if(rb) rb.classList.add('hide');
-        return;
-      }
-      const masaText = document.getElementById('masa').value || '';
-      const data = {
-        up: Number(document.getElementById('up').value.replace(/[^0-9]/g,'')),
-        age: getAgeFromDateInput(document.getElementById('dob').value),
-        gender: document.getElementById('gender').value,
-        produk: document.getElementById('produk').value,
-        masa: parseInt((masaText.match(/[0-9]+/)||[''])[0], 10) || 0,
-      };
-      fillSummary();
-      const raw = estimatePremium(data);
-      const discPct = (data.produk === 'PRUCinta' ? 7 : 3) + (data.masa >= 15 ? 2 : 0);
-      document.getElementById('disc').textContent = discPct;
-      if(raw>0){
-        document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
-        const net = Math.round(raw * (100 - discPct)/100);
-        document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
-        document.getElementById('resultsFloat').classList.remove('hide');
-        document.getElementById('resultsBackdrop').classList.remove('hide');
-        requestAnimationFrame(fitModal);
-      } else {
-        document.getElementById('premi').textContent = 'Rp – / tahun';
-        document.getElementById('premiNet').textContent = 'Rp – / tahun';
-        document.getElementById('resultsFloat').classList.add('hide');
-        document.getElementById('resultsBackdrop').classList.add('hide');
-      }
-    }
-
-    document.getElementById('hitung').addEventListener('click', calc);
-
-    // FILTER BAR logic
-    // Conditional options for Masa Pembayaran berdasarkan Produk
-    const masaSel = document.getElementById('masa');
-    const produkSel = document.getElementById('produk');
-    const defaultMasa = ['5 tahun','10 tahun','15 tahun'];
-    function updateMasaOptions(product){
-      let opts = defaultMasa;
-      if(product === 'PRUCinta'){
-        opts = ['10 Tahun'];
-      } else if(product === 'PRUHeritage'){
-        opts = ['5 tahun','10 tahun','15 tahun','sampai usia 60 tahun','sampai usia 99 tahun'];
-      }
-      const current = masaSel.value;
-      masaSel.innerHTML = '';
-      const ph = document.createElement('option');
-      ph.value = '';
-      ph.textContent = 'Pilih';
-      ph.disabled = true; ph.selected = true;
-      masaSel.appendChild(ph);
-      opts.forEach(t => { const o=document.createElement('option'); o.textContent=t; masaSel.appendChild(o); });
-      if(opts.includes(current)){
-        masaSel.value = current; ph.selected = false;
-      }
-    }
-
-    // Trigger update saat produk berubah (di form & filter)
-    produkSel.addEventListener('change', e => updateMasaOptions(e.target.value));
-
-    // Set default saat load
-    updateMasaOptions(produkSel.value || '');
-    
-    // --- Input restrictions & formatting ---
-    // Uang Pertanggungan: angka saja + thousand separator saat mengetik
-    const upField = document.getElementById('up');
-    const nfID = new Intl.NumberFormat('id-ID');
-    upField.addEventListener('input', () => {
-      const digits = upField.value.replace(/\D/g,'');
-      upField.value = digits ? nfID.format(Number(digits)) : '';
-    });
-
-    // WA: angka saja
-    const waField = document.getElementById('wa');
-    waField.addEventListener('input', () => {
-      waField.value = waField.value.replace(/\D/g,'');
-    });
-    // --- Validation helpers ---
-    function clearErrors(){
-      document.querySelectorAll('.errorMsg').forEach(function(el){ el.remove(); });
-      document.querySelectorAll('.error').forEach(function(el){ el.classList.remove('error'); });
-    }
-    function addError(id, msg){
-      var el = document.getElementById(id);
-      if(!el) return;
-      el.classList.add('error');
-      var field = el.closest('.field') || el.parentElement;
-      var msgEl = document.createElement('div');
-      msgEl.setAttribute('class','errorMsg');
-      msgEl.textContent = '* ' + msg;
-      field.appendChild(msgEl);
-    }
-    function validateForm(){
-      clearErrors();
-      var ok = true;
-      var required = [
-        ['nama','Nama wajib diisi'],
-        ['wa','Nomor WA wajib diisi'],
-        ['email','Email wajib diisi'],
-        ['gender','Jenis kelamin wajib dipilih'],
-        ['dob','Tanggal lahir wajib diisi'],
-        ['smoke','Status merokok wajib dipilih'],
-        ['produk','Nama produk wajib dipilih'],
-        ['up','Uang pertanggungan wajib diisi'],
-        ['masa','Masa pembayaran wajib dipilih']
-      ];
-      required.forEach(function(item){
-        var id=item[0], msg=item[1];
-        var el = document.getElementById(id);
-        var val = (el && (el.value||'').trim()) || '';
-        if(!val){ ok=false; addError(id,msg); }
-      });
-      var upDigits = (document.getElementById('up').value||'').replace(/\D/g,'');
-      if(!upDigits || Number(upDigits) <= 0){ ok=false; addError('up','Masukkan angka lebih dari 0'); }
-      var firstErr = document.querySelector('.error');
-      if(firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
-      return ok;
-    }
-
-    // --- Summary helpers ---
-    const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const toDisplayDMY = (ymd) => { if(!ymd) return ''; const [y,m,d] = ymd.split('-'); const idx = Math.max(0, Math.min(11, parseInt(m,10)-1)); return `${d}-${MONTH_ABBR[idx]}-${y}`; };
-    // Mirror formatted date into overlay span
-    const dobInput = document.getElementById('dob');
-    const dobDisplay = document.getElementById('dobDisplay');
-    function refreshDobDisplay(){
-      const ymd = dobInput.value;
-      if(ymd){ dobDisplay.textContent = toDisplayDMY(ymd); dobDisplay.classList.remove('empty'); }
-      else { dobDisplay.textContent = 'dd-Mmm-yyyy'; dobDisplay.classList.add('empty'); }
-    }
-    if(dobInput && dobDisplay){
-      dobInput.addEventListener('input', refreshDobDisplay);
-      dobInput.addEventListener('change', refreshDobDisplay);
-      refreshDobDisplay();
-    }
-    const selText = (id) => { const el = document.getElementById(id); return el && el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : ''; };
-    function fillSummary(){
-      const v = (id) => (document.getElementById(id).value || '').trim();
-      document.getElementById('s_nama').textContent = v('nama') || '-';
-      document.getElementById('s_wa').textContent = v('wa') || '-';
-      document.getElementById('s_email').textContent = v('email') || '-';
-      document.getElementById('s_gender').textContent = selText('gender') || '-';
-      document.getElementById('s_dob').textContent = v('dob') ? toDisplayDMY(v('dob')) : '-';
-      document.getElementById('s_smoke').textContent = selText('smoke') || '-';
-      document.getElementById('s_produk').textContent = selText('produk') || '-';
-      const upVal = v('up');
-      document.getElementById('s_up').textContent = upVal ? ('Rp ' + upVal) : '-';
-      document.getElementById('s_masa').textContent = selText('masa') || '-';
-    }
-
-    // Modal auto-fit to viewport (no internal scrolling)
-    function fitModal(){
-      const modal = document.getElementById('resultsFloat');
-      if(!modal || modal.classList.contains('hide')) return;
-      // reset to natural size first
-      modal.style.transform = 'translate(-50%,-50%) scale(1)';
-      const rect = modal.getBoundingClientRect();
-      const vw = Math.min(window.innerWidth || 0, document.documentElement.clientWidth || 0) || window.innerWidth;
-      const vh = Math.min(window.innerHeight || 0, document.documentElement.clientHeight || 0) || window.innerHeight;
-      const PAD = 24; // breathing room
-      const scale = Math.min(1, (vw - PAD) / rect.width, (vh - PAD) / rect.height);
-      modal.style.transform = `translate(-50%,-50%) scale(${scale})`;
-    }
-
-    // Close / hide handlers
-    function hideResults(){
-      document.getElementById('resultsFloat').classList.add('hide');
-      document.getElementById('resultsBackdrop').classList.add('hide');
-    }
-    document.getElementById('closeResults').addEventListener('click', hideResults);
-    document.getElementById('resultsBackdrop').addEventListener('click', hideResults);
-    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') hideResults(); });
-    window.addEventListener('resize', fitModal);
-    if(window.visualViewport){ window.visualViewport.addEventListener('resize', fitModal); }
-    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitModal); }
-  </script>
-      </div>
+</div>
     </section>
 
   </main>
@@ -511,6 +188,43 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/kalkulator.js"></script>
+  <script>
+    // Disable Right Click
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        alert("Right-click is disabled!");
+    });
+
+    // Disable Ctrl+U
+    document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
+            event.preventDefault();
+            alert("View Source is disabled!");
+        }
+    });
+
+    // Disable Ctrl+C
+    document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && (event.key === "c" || event.key === "C")) {
+            event.preventDefault();
+            alert("Copy is disabled!");
+        }
+    });
+
+    // Disable F12, Ctrl+Shift+I
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "F12" || (event.ctrlKey && event.shiftKey && (event.key === "i" || event.key === "I"))) {
+            event.preventDefault();
+            alert("Developer Tools are disabled!");
+        }
+    });
+
+    // Menonaktifkan text selection di seluruh halaman
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+    });
+</script>
 
 </body>
 
