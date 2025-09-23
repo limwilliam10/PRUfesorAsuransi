@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root{
       --bg:#faf9fb;
@@ -21,56 +23,56 @@
       --warn:#fde2e2;
       --radius:16px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
+    #kalkulator-premi-container *{box-sizing:border-box}
+    html,#kalkulator-premi-container {height:100%}
+    #kalkulator-premi-container {
       margin:0; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       line-height:1.45;
     }
-    .wrap{max-width:980px; margin:24px auto 80px; padding:0 16px}
+    #kalkulator-premi-container .wrap{max-width:980px; margin:24px auto 80px; padding:0 16px}
 
     /* Header */
-    .title{font-weight:800; font-size:22px; letter-spacing:.2px; margin:8px 0 14px}
-    .subtitle{color:var(--muted); font-size:13px; margin-bottom:18px}
+    #kalkulator-premi-container .title{font-weight:800; font-size:22px; letter-spacing:.2px; margin:8px 0 14px}
+    #kalkulator-premi-container .subtitle{color:var(--muted); font-size:13px; margin-bottom:18px}
 
     /* Card */
-    .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 5px 18px rgba(28,18,48,.05); overflow:hidden}
-    .cardHeader{padding:18px 18px 0}
-    .grid{display:grid; grid-template-columns:1fr; gap:12px; padding:18px}
-    @media(min-width:720px){ .grid{grid-template-columns:repeat(2,1fr)} }
-    @media(min-width:960px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    #kalkulator-premi-container .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 5px 18px rgba(28,18,48,.05); overflow:hidden}
+    #kalkulator-premi-container .cardHeader{padding:18px 18px 0}
+    #kalkulator-premi-container .grid{display:grid; grid-template-columns:1fr; gap:12px; padding:18px}
+    @media(min-width:720px){#kalkulator-premi-container .grid{grid-template-columns:repeat(2,1fr)} }
+    @media(min-width:960px){#kalkulator-premi-container .grid{grid-template-columns:repeat(3,1fr)} }
 
     label{font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.2px}
-    .field{display:flex; flex-direction:column; gap:6px}
-    .input, select, input[type="date"]{height:38px; width:100%; border:1px solid var(--stroke); border-radius:10px; padding:8px 10px; font-size:14px; outline:none; background:#fff}
-    .input:focus, select:focus, input[type="date"]:focus{border-color:#cdb4d9; box-shadow:0 0 0 4px rgba(187,162,195,.18)}
+    #kalkulator-premi-container .field{display:flex; flex-direction:column; gap:6px}
+    #kalkulator-premi-container .input, select, input[type="date"]{height:38px; width:100%; border:1px solid var(--stroke); border-radius:10px; padding:8px 10px; font-size:14px; outline:none; background:#fff}
+    #kalkulator-premi-container .input:focus, select:focus, input[type="date"]:focus{border-color:#cdb4d9; box-shadow:0 0 0 4px rgba(187,162,195,.18)}
 
-    .split{display:flex; align-items:center; gap:10px}
-    .split .unit{color:var(--muted); font-size:13px}
-    .split .input{flex:1}
+    #kalkulator-premi-container .split{display:flex; align-items:center; gap:10px}
+    #kalkulator-premi-container .split .unit{color:var(--muted); font-size:13px}
+    #kalkulator-premi-container .split .input{flex:1}
 
-    .actions{display:flex; justify-content:center; padding:10px 18px 22px}
-    .btn{appearance:none; border:none; background:var(--brand); color:#fff; height:40px; padding:0 18px; border-radius:10px; font-weight:700; letter-spacing:.2px; cursor:pointer}
-    .btn:hover{background:#2d081f}
+    #kalkulator-premi-container .actions{display:flex; justify-content:center; padding:10px 18px 22px}
+    #kalkulator-premi-container .btn{appearance:none; border:none; background:var(--brand); color:#fff; height:40px; padding:0 18px; border-radius:10px; font-weight:700; letter-spacing:.2px; cursor:pointer}
+    #kalkulator-premi-container .btn:hover{background:#2d081f}
 
     /* Results */
-    .results{display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; padding:0 18px 18px}
-    @media(min-width:720px){ .results{grid-template-columns:repeat(3,1fr)} }
-    .resultCard{border:1px solid var(--stroke); border-radius:14px; padding:14px}
-    .resultCard h4{margin:0 0 6px; font-size:12px; color:var(--muted); letter-spacing:.2px}
-    .resultCard .value{font-size:20px; font-weight:800}
-    .accent-warn{background:var(--warn)}
-    .accent-ok{background:var(--ok)}
-    .muted{color:var(--muted)}
+    #kalkulator-premi-container .results{display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; padding:0 18px 18px}
+    @media(min-width:720px){#kalkulator-premi-container .results{grid-template-columns:repeat(3,1fr)} }
+    #kalkulator-premi-container .resultCard{border:1px solid var(--stroke); border-radius:14px; padding:14px}
+    #kalkulator-premi-container .resultCard h4{margin:0 0 6px; font-size:12px; color:var(--muted); letter-spacing:.2px}
+    #kalkulator-premi-container .resultCard .value{font-size:20px; font-weight:800}
+    #kalkulator-premi-container .accent-warn{background:var(--warn)}
+    #kalkulator-premi-container .accent-ok{background:var(--ok)}
+    #kalkulator-premi-container .muted{color:var(--muted)}
 
-    .footer{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:18px; border-top:1px dashed var(--stroke); font-size:12px; color:var(--muted)}
-    .link{color:var(--brand-2); text-decoration:none; font-weight:700}
-    .tiny{font-size:11px}
+    #kalkulator-premi-container .footer{display:flex; justify-content:space-between; align-items:center; gap:8px; padding:18px; border-top:1px dashed var(--stroke); font-size:12px; color:var(--muted)}
+    #kalkulator-premi-container .link{color:var(--brand-2); text-decoration:none; font-weight:700}
+    #kalkulator-premi-container .tiny{font-size:11px}
 
-    .powered{padding:12px 18px; text-align:center; color:#b45475; font-weight:700}
+    #kalkulator-premi-container .powered{padding:12px 18px; text-align:center; color:#b45475; font-weight:700}
 
     /* --- CSS UNTUK LOADER --- */
-    .loader-backdrop {
+    #kalkulator-premi-container .loader-backdrop {
       position: fixed;
       inset: 0;
       background: rgba(255, 255, 255, 0.7);
@@ -80,7 +82,7 @@
       justify-content: center;
       backdrop-filter: blur(2px); /* Efek blur opsional */
     }
-    .spinner {
+    #kalkulator-premi-container .spinner {
       width: 50px;
       height: 50px;
       border: 5px solid #e6e6ea; /* Warna track spinner */
@@ -94,27 +96,27 @@
     }
 
     /* Utilities used by filter/search scripting */
-    .hide{display:none !important}
+    #kalkulator-premi-container .hide{display:none !important}
       /* Floating Results (hidden by default) */
     /* legacy float style removed to avoid conflicts */
-    .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
+    #kalkulator-premi-container .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
     
       /* Floating modal overrides */
-    .floatResults{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(1); transform-origin:center center; width:min(900px,92vw); max-width:calc(100dvw - 24px); overflow:hidden; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 24px 60px rgba(31,35,48,.28); z-index:100; will-change:transform; box-sizing:border-box}
-    .floatResults .floatBody{padding:16px}
-    .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
-    .closeBtn{position:absolute; top:8px; right:10px; border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer; color:#9aa0aa}
-    .closeBtn:hover{color:#5b616a}
-    .summaryGrid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
-    .summaryGrid .item{border:1px dashed var(--stroke); border-radius:10px; padding:8px 10px}
-    .summaryGrid .label{display:block; font-size:11px; color:var(--muted); letter-spacing:.2px}
-    .summaryGrid .val{font-weight:700}
-    .modalBackdrop{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:90}
-    @media(max-width:960px){ .summaryGrid{grid-template-columns:repeat(2,1fr)} }
-    @media(max-width:640px){ .summaryGrid{grid-template-columns:1fr} }
+    #kalkulator-premi-container .floatResults{position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(1); transform-origin:center center; width:min(900px,92vw); max-width:calc(100dvw - 24px); overflow:hidden; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); box-shadow:0 24px 60px rgba(31,35,48,.28); z-index:100; will-change:transform; box-sizing:border-box}
+    #kalkulator-premi-container .floatResults .floatBody{padding:16px}
+    #kalkulator-premi-container .floatResults .results{margin:12px 0 0; padding:0; width:100%; box-sizing:border-box; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));}
+    #kalkulator-premi-container .closeBtn{position:absolute; top:8px; right:10px; border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer; color:#9aa0aa}
+    #kalkulator-premi-container .closeBtn:hover{color:#5b616a}
+    #kalkulator-premi-container .summaryGrid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+    #kalkulator-premi-container .summaryGrid .item{border:1px dashed var(--stroke); border-radius:10px; padding:8px 10px}
+    #kalkulator-premi-container .summaryGrid .label{display:block; font-size:11px; color:var(--muted); letter-spacing:.2px}
+    #kalkulator-premi-container .summaryGrid .val{font-weight:700}
+    #kalkulator-premi-container .modalBackdrop{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:90}
+    @media(max-width:960px){#kalkulator-premi-container .summaryGrid{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:640px){#kalkulator-premi-container .summaryGrid{grid-template-columns:1fr} }
       /* Errors */
-    .error{border-color:#ef4444 !important; box-shadow:0 0 0 4px rgba(239,68,68,.15) !important}
-    .errorMsg{color:#dc2626; font-size:12px; margin-top:4px}
+    #kalkulator-premi-container .error{border-color:#ef4444 !important; box-shadow:0 0 0 4px rgba(239,68,68,.15) !important}
+    #kalkulator-premi-container .errorMsg{color:#dc2626; font-size:12px; margin-top:4px}
       /* Force visual order dd/mm/yyyy for WebKit/Blink (Chrome/Edge/Samsung Internet) */
     input[type="date"]::-webkit-datetime-edit { display:flex; }
     input[type="date"]::-webkit-datetime-edit-fields-wrapper{ display:flex; }
@@ -123,14 +125,16 @@
     input[type="date"]::-webkit-datetime-edit-year-field{ order:3; }
     input[type="date"]::-webkit-datetime-edit-text{ order:4; }
       /* Date display overlay for dd-Mmm-yyyy */
-    .dateWrap{position:relative}
-    .dateWrap .dateNative{color:transparent; caret-color:transparent; position:relative; z-index:2; background:transparent}
-    .dateWrap .dateDisplay{position:absolute; inset:0; display:flex; align-items:center; padding:0 10px; pointer-events:none; color:var(--ink)}
-    .dateDisplay.empty{color:var(--muted)}
+    #kalkulator-premi-container .dateWrap{position:relative}
+    #kalkulator-premi-container .dateWrap .dateNative{color:transparent; caret-color:transparent; position:relative; z-index:2; background:transparent}
+    #kalkulator-premi-container .dateWrap .dateDisplay{position:absolute; inset:0; display:flex; align-items:center; padding:0 10px; pointer-events:none; color:var(--ink)}
+    #kalkulator-premi-container .dateDisplay.empty{color:var(--muted)}
   </style>
 </head>
+
 <body>
-  <div id="loader" class="loader-backdrop hide">
+<div id="kalkulator-premi-container">
+    <div id="loader" class="loader-backdrop hide">
     <div class="spinner"></div>
   </div>
   <div class="wrap">
@@ -238,8 +242,12 @@
       </div>
     </div>
   </div>
+</div>
 
   <script>
+    // Definisikan kontainer di paling atas
+    const kalkulatorContainer = document.getElementById('kalkulator-premi-container');
+
     // Helpers
     const fmtIDR = (n) => n.toLocaleString('id-ID', { style:'currency', currency:'IDR', maximumFractionDigits:0 });
     function getAgeFromDateInput(ymd){
@@ -371,27 +379,27 @@
     // Ganti seluruh fungsi calc Anda dengan yang ini
     async function calc() {
       if (!validateForm()) {
-        const rf = document.getElementById('resultsFloat');
-        const rb = document.getElementById('resultsBackdrop');
+        const rf = kalkulatorContainer.querySelector('#resultsFloat');
+        const rb = kalkulatorContainer.querySelector('#resultsBackdrop');
         if (rf) rf.classList.add('hide');
         if (rb) rb.classList.add('hide');
         return;
       }
       
-      const loader = document.getElementById('loader');
+      const loader = kalkulatorContainer.querySelector('#loader');
       
       try {
         // ---> 1. Tampilkan loader saat perhitungan dimulai
         loader.classList.remove('hide');
 
-        const masaText = document.getElementById('masa').value || '';
+        const masaText = kalkulatorContainer.querySelector('#masa').value || '';
         const data = {
-          up: Number(document.getElementById('up').value.replace(/[^0-9]/g, '')),
-          age: getAgeFromDateInput(document.getElementById('dob').value),
-          gender: document.getElementById('gender').value,
-          produk: document.getElementById('produk').value,
+          up: Number(kalkulatorContainer.querySelector('#up').value.replace(/[^0-9]/g, '')),
+          age: getAgeFromDateInput(kalkulatorContainer.querySelector('#dob').value),
+          gender: kalkulatorContainer.querySelector('#gender').value,
+          produk: kalkulatorContainer.querySelector('#produk').value,
           masa: parseInt((masaText.match(/[0-9]+/) || [''])[0], 10) || 0,
-          smoke: document.getElementById('smoke').value,
+          smoke: kalkulatorContainer.querySelector('#smoke').value,
         };
 
         fillSummary();
@@ -399,26 +407,26 @@
         const raw = await estimatePremium(data); 
         const discPct = await getDiscountPercentage({ produk: data.produk, up: data.up });
         
-        document.getElementById('disc').textContent = discPct;
+        kalkulatorContainer.querySelector('#disc').textContent = discPct;
         
         let net = 0; // Inisialisasi premi final
         if (raw > 0) {
-          document.getElementById('premi').textContent = fmtIDR(raw) + ' / tahun';
+          kalkulatorContainer.querySelector('#premi').textContent = fmtIDR(raw) + ' / tahun';
           const premiSetelahDiskon = raw * (100 - discPct) / 100;
           const net = Math.round(premiSetelahDiskon / 1000) * 1000;
-          document.getElementById('premiNet').textContent = fmtIDR(net) + ' / tahun';
+          kalkulatorContainer.querySelector('#premiNet').textContent = fmtIDR(net) + ' / tahun';
         } else {
-          document.getElementById('premi').textContent = 'Data tidak ditemukan';
-          document.getElementById('premiNet').textContent = 'Data tidak ditemukan';
+          kalkulatorContainer.querySelector('#premi').textContent = 'Data tidak ditemukan';
+          kalkulatorContainer.querySelector('#premiNet').textContent = 'Data tidak ditemukan';
         }
 
         // Siapkan data untuk dikirim ke Google Sheet
         const logPayload = {
-          nama: document.getElementById('nama').value,
-          wa: document.getElementById('wa').value,
-          email: document.getElementById('email').value,
+          nama: kalkulatorContainer.querySelector('#nama').value,
+          wa: kalkulatorContainer.querySelector('#wa').value,
+          email: kalkulatorContainer.querySelector('#email').value,
           gender: data.gender,
-          dob: document.getElementById('dob').value,
+          dob: kalkulatorContainer.querySelector('#dob').value,
           smoke: data.smoke,
           produk: data.produk,
           up: data.up,
@@ -433,8 +441,8 @@
         // -------------------------
         
         // Tampilkan jendela hasil
-        document.getElementById('resultsFloat').classList.remove('hide');
-        document.getElementById('resultsBackdrop').classList.remove('hide');
+        kalkulatorContainer.querySelector('#resultsFloat').classList.remove('hide');
+        kalkulatorContainer.querySelector('#resultsBackdrop').classList.remove('hide');
         requestAnimationFrame(fitModal);
 
       } catch (error) {
@@ -448,12 +456,12 @@
     }
 
     // Pastikan event listener tidak berubah
-    document.getElementById('hitung').addEventListener('click', calc);
+    kalkulatorContainer.querySelector('#hitung').addEventListener('click', calc);
 
     // FILTER BAR logic
     // Conditional options for Masa Pembayaran berdasarkan Produk
-    const masaSel = document.getElementById('masa');
-    const produkSel = document.getElementById('produk');
+    const masaSel = kalkulatorContainer.querySelector('#masa');
+    const produkSel = kalkulatorContainer.querySelector('#produk');
     const defaultMasa = ['5 tahun','10 tahun','15 tahun'];
     function updateMasaOptions(product){
       let opts = defaultMasa;
@@ -483,7 +491,7 @@
     
     // --- Input restrictions & formatting ---
     // Uang Pertanggungan: angka saja + thousand separator saat mengetik
-    const upField = document.getElementById('up');
+    const upField = kalkulatorContainer.querySelector('#up');
     const nfID = new Intl.NumberFormat('id-ID');
     upField.addEventListener('input', () => {
       const digits = upField.value.replace(/\D/g,'');
@@ -491,17 +499,17 @@
     });
 
     // WA: angka saja
-    const waField = document.getElementById('wa');
+    const waField = kalkulatorContainer.querySelector('#wa');
     waField.addEventListener('input', () => {
       waField.value = waField.value.replace(/\D/g,'');
     });
     // --- Validation helpers ---
     function clearErrors(){
-      document.querySelectorAll('.errorMsg').forEach(function(el){ el.remove(); });
-      document.querySelectorAll('.error').forEach(function(el){ el.classList.remove('error'); });
+      kalkulatorContainer.querySelectorAll('.errorMsg').forEach(function(el){ el.remove(); });
+      kalkulatorContainer.querySelectorAll('.error').forEach(function(el){ el.classList.remove('error'); });
     }
     function addError(id, msg){
-      var el = document.getElementById(id);
+      var el = kalkulatorContainer.querySelector('#' + id);
       if(!el) return;
       el.classList.add('error');
       var field = el.closest('.field') || el.parentElement;
@@ -526,13 +534,13 @@
       ];
       required.forEach(function(item){
         var id=item[0], msg=item[1];
-        var el = document.getElementById(id);
+        var el = kalkulatorContainer.querySelector('#' + id);
         var val = (el && (el.value||'').trim()) || '';
         if(!val){ ok=false; addError(id,msg); }
       });
-      var upDigits = (document.getElementById('up').value||'').replace(/\D/g,'');
+      var upDigits = (kalkulatorContainer.querySelector('#up').value||'').replace(/\D/g,'');
       if(!upDigits || Number(upDigits) <= 0){ ok=false; addError('up','Masukkan angka lebih dari 0'); }
-      var firstErr = document.querySelector('.error');
+      var firstErr = kalkulatorContainer.querySelector('.error');
       if(firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
       return ok;
     }
@@ -541,8 +549,8 @@
     const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const toDisplayDMY = (ymd) => { if(!ymd) return ''; const [y,m,d] = ymd.split('-'); const idx = Math.max(0, Math.min(11, parseInt(m,10)-1)); return `${d}-${MONTH_ABBR[idx]}-${y}`; };
     // Mirror formatted date into overlay span
-    const dobInput = document.getElementById('dob');
-    const dobDisplay = document.getElementById('dobDisplay');
+    const dobInput = kalkulatorContainer.querySelector('#dob');
+    const dobDisplay = kalkulatorContainer.querySelector('#dobDisplay');
     function refreshDobDisplay(){
       const ymd = dobInput.value;
       if(ymd){ dobDisplay.textContent = toDisplayDMY(ymd); dobDisplay.classList.remove('empty'); }
@@ -553,24 +561,24 @@
       dobInput.addEventListener('change', refreshDobDisplay);
       refreshDobDisplay();
     }
-    const selText = (id) => { const el = document.getElementById(id); return el && el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : ''; };
+    const selText = (id) => { const el = kalkulatorContainer.querySelector('#' + id); return el && el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : ''; };
     function fillSummary(){
-      const v = (id) => (document.getElementById(id).value || '').trim();
-      document.getElementById('s_nama').textContent = v('nama') || '-';
-      document.getElementById('s_wa').textContent = v('wa') || '-';
-      document.getElementById('s_email').textContent = v('email') || '-';
-      document.getElementById('s_gender').textContent = selText('gender') || '-';
-      document.getElementById('s_dob').textContent = v('dob') ? toDisplayDMY(v('dob')) : '-';
-      document.getElementById('s_smoke').textContent = selText('smoke') || '-';
-      document.getElementById('s_produk').textContent = selText('produk') || '-';
+      const v = (id) => (kalkulatorContainer.querySelector('#' + id).value || '').trim();
+      kalkulatorContainer.querySelector('#s_nama').textContent = v('nama') || '-';
+      kalkulatorContainer.querySelector('#s_wa').textContent = v('wa') || '-';
+      kalkulatorContainer.querySelector('#s_email').textContent = v('email') || '-';
+      kalkulatorContainer.querySelector('#s_gender').textContent = selText('gender') || '-';
+      kalkulatorContainer.querySelector('#s_dob').textContent = v('dob') ? toDisplayDMY(v('dob')) : '-';
+      kalkulatorContainer.querySelector('#s_smoke').textContent = selText('smoke') || '-';
+      kalkulatorContainer.querySelector('#s_produk').textContent = selText('produk') || '-';
       const upVal = v('up');
-      document.getElementById('s_up').textContent = upVal ? ('Rp ' + upVal) : '-';
-      document.getElementById('s_masa').textContent = selText('masa') || '-';
+      kalkulatorContainer.querySelector('#s_up').textContent = upVal ? ('Rp ' + upVal) : '-';
+      kalkulatorContainer.querySelector('#s_masa').textContent = selText('masa') || '-';
     }
 
     // Modal auto-fit to viewport (no internal scrolling)
     function fitModal(){
-      const modal = document.getElementById('resultsFloat');
+      const modal = kalkulatorContainer.querySelector('#resultsFloat');
       if(!modal || modal.classList.contains('hide')) return;
       // reset to natural size first
       modal.style.transform = 'translate(-50%,-50%) scale(1)';
@@ -584,11 +592,11 @@
 
     // Close / hide handlers
     function hideResults(){
-      document.getElementById('resultsFloat').classList.add('hide');
-      document.getElementById('resultsBackdrop').classList.add('hide');
+      kalkulatorContainer.querySelector('#resultsFloat').classList.add('hide');
+      kalkulatorContainer.querySelector('#resultsBackdrop').classList.add('hide');
     }
-    document.getElementById('closeResults').addEventListener('click', hideResults);
-    document.getElementById('resultsBackdrop').addEventListener('click', hideResults);
+    kalkulatorContainer.querySelector('#closeResults').addEventListener('click', hideResults);
+    kalkulatorContainer.querySelector('#resultsBackdrop').addEventListener('click', hideResults);
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') hideResults(); });
     window.addEventListener('resize', fitModal);
     if(window.visualViewport){ window.visualViewport.addEventListener('resize', fitModal); }
