@@ -271,9 +271,6 @@
       return Math.max(0, age);
     }
 
-    // URL dari Google Sheet yang sudah di-publish sebagai CSV
-    const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSAJCvm0ndyO4WJr_HZGPtrZE_zxZTKmf_A_bYNbnkUa5KVpEtymfSew5glyl9FQoEOPe4e_XyMOG7/pub?gid=0&single=true&output=csv';
-    const GOOGLE_SHEET_DISCOUNT_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSAJCvm0ndyO4WJr_HZGPtrZE_zxZTKmf_A_bYNbnkUa5KVpEtymfSew5glyl9FQoEOPe4e_XyMOG7/pub?gid=1035821418&single=true&output=csv';
     const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJGLWDt4d-npwDy_5mpcds8kJE7ivwfqn-n8dcHJa1OluPcASMe1Mb1xTVuFiORqXw/exec';
 
     // Fungsi baru untuk mengambil data dan mencari premi
@@ -281,79 +278,49 @@
       // Pastikan semua input ada
       if (!up || !age || !gender || !produk || !masa || !smoke) return 0;
 
+      // Bangun URL dengan parameter kriteria
+      const url = new URL('https://script.google.com/macros/s/AKfycbxX9Y5LpmshAp32UPVJs4VkgfWXVd64SvISBpzxVpDiHItyiZJBJcW9KWsTbVa8zyArIg/exec');
+      url.searchParams.set('type', 'premium');
+      url.searchParams.set('produk', produk);
+      url.searchParams.set('smoke', smoke);
+      url.searchParams.set('age', age);
+      url.searchParams.set('gender', gender);
+      url.searchParams.set('masa', masa);
+
       try {
-        const response = await fetch(GOOGLE_SHEET_URL);
+        const response = await fetch(url);
         if (!response.ok) {
-          console.error('Gagal mengambil data dari Google Sheet.');
+          console.error('Gagal mengambil data premi dari Apps Script.');
           return 0;
         }
-
-        const csvText = await response.text();
-        const rows = csvText.split('\n').map(row => row.split(','));
-
-        // Mencari baris yang cocok dengan 5 kriteria
-        // Format di CSV: [Produk, Merokok, Usia, Gender, Masa Bayar, Premi Dasar]
-        const foundRow = rows.find(row => 
-          row[0] === produk &&         // Kolom A: Nama Produk
-          row[1] === smoke &&          // Kolom B: Status Merokok (Y/N)
-          row[2] === String(age) &&    // Kolom C: Usia
-          row[3] === gender &&         // Kolom D: Jenis Kelamin (L/P)
-          row[4] === String(masa)      // Kolom E: Masa Pembayaran (angka)
-        );
-
-        if (foundRow) {
-          // Kolom F (indeks ke-5) adalah Premi Dasar untuk 1 Miliar
-          const basePremium = Number(foundRow[5].replace(/[^0-9]/g, ''));
-          
-          // Hitung premi proporsional berdasarkan UP yang diinput
-          const finalPremium = basePremium * (up / 1000000000);
-          return Math.round(finalPremium);
-
-        } else {
-          console.warn('Kombinasi data tidak ditemukan di tabel premi.');
-          return 0; // Kembalikan 0 jika tidak ada data yang cocok
-        }
-
+        const result = await response.json();
+        const basePremium = Number(String(result.value).replace(/[^0-9]/g, ''));
+        const finalPremium = basePremium * (up / 1000000000);
+        return Math.round(finalPremium);
       } catch (error) {
-        console.error('Terjadi error saat memproses data:', error);
+        console.error('Terjadi error saat memproses data premi:', error);
         return 0;
       }
     }
 
-    // Fungsi baru untuk mengambil data diskon
+    // Fungsi untuk mengambil data diskon
     async function getDiscountPercentage({produk, up}) {
-      if (!produk || !up) return 0; // Kembalikan 0 jika data tidak lengkap
+      if (!produk || !up) return 0;
 
+      // Bangun URL dengan parameter kriteria
+      const url = new URL('https://script.google.com/macros/s/AKfycbxX9Y5LpmshAp32UPVJs4VkgfWXVd64SvISBpzxVpDiHItyiZJBJcW9KWsTbVa8zyArIg/exec');
+      url.searchParams.set('type', 'diskon');
+      url.searchParams.set('produk', produk);
+      url.searchParams.set('up', up);
+      
       try {
-        const response = await fetch(GOOGLE_SHEET_DISCOUNT_URL);
+        const response = await fetch(url);
         if (!response.ok) {
-          console.error('Gagal mengambil data diskon dari Google Sheet.');
+          console.error('Gagal mengambil data diskon dari Apps Script.');
           return 0;
         }
-
-        const csvText = await response.text();
-        // Hapus baris header dan baris kosong
-        const rows = csvText.split('\n').slice(1).filter(row => row).map(row => row.split(','));
-
-        // Mencari baris diskon yang cocok
-        // Format di CSV: [Produk, Min UP, Max UP, Diskon]
-        const foundRow = rows.find(row => {
-          const csvProduk = row[0];
-          const csvMinUP = Number(row[1]);
-          const csvMaxUP = Number(row[2]);
-
-          // Cek apakah produknya cocok DAN UP berada di dalam rentang
-          return produk === csvProduk && up >= csvMinUP && up <= csvMaxUP;
-        });
-
-        if (foundRow) {
-          // Kolom D (indeks ke-3) adalah persentase diskon
-          return Number(foundRow[3]);
-        } else {
-          console.warn('Skema diskon tidak ditemukan untuk produk dan UP ini.');
-          return 0; // Diskon default jika tidak ada yang cocok
-        }
-
+        const result = await response.json();
+        return Number(result.value) || 0;
       } catch (error) {
         console.error('Terjadi error saat memproses data diskon:', error);
         return 0;
