@@ -195,7 +195,7 @@ async function updateMasaOptionsFromSheet(productName) {
   }
 
   try {
-    const url = new URL(GOOGLE_APPS_SCRIPT_URL);
+    const url = new URL('https://script.google.com/macros/s/AKfycbxX9Y5LpmshAp32UPVJs4VkgfWXVd64SvISBpzxVpDiHItyiZJBJcW9KWsTbVa8zyArIg/exec');
     url.searchParams.set('type', 'getTerms');
     url.searchParams.set('product', productName);
 
