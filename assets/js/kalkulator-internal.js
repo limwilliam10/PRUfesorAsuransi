@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', populateProductDropdown);
 
 // Fungsi untuk menampilkan kalkulator jika password benar
 function showCalculator() {
-  document.getElementById('kalkulator-premi-container').style.display = 'block';
+  kalkulatorContainer.querySelector('#kalkulator-premi-container').style.display = 'block';
 }
 
 // Fungsi untuk meminta password saat halaman dimuat
