@@ -182,16 +182,20 @@ kalkulatorContainer.querySelector('#hitung').addEventListener('click', calc);
 // Conditional options for Masa Pembayaran berdasarkan Produk
 const masaSel = kalkulatorContainer.querySelector('#masa');
 const produkSel = kalkulatorContainer.querySelector('#produk');
+const hitungBtn = kalkulatorContainer.querySelector('#hitung');
 const defaultMasa = ['5 tahun','10 tahun','15 tahun'];
 // Fungsi baru untuk mengambil dan mengisi pilihan Masa Pembayaran
 async function updateMasaOptionsFromSheet(productName) {
-  masaSel.disabled = true; // Nonaktifkan sementara saat proses
+  // Nonaktifkan kedua elemen (field Masa Pembayaran dan tombol Calculate) saat proses dimulai
+  masaSel.disabled = true;
+  hitungBtn.disabled = true;
 
   // Simpan pilihan pengguna saat ini sebelum diubah
   const currentSelection = masaSel.value;
 
   if (!productName) {
     masaSel.disabled = false;
+    hitungBtn.disabled = false;
     return;
   }
 
@@ -218,31 +222,27 @@ async function updateMasaOptionsFromSheet(productName) {
     
     // 2. Olah data BARU dari Google Sheet agar formatnya sama ("10 tahun")
     const newOptions = termsListFromSheet.map(term => {
-        if (term == 60) {
-            return 'sampai usia 60 tahun';
-        } else if (term == 99) {
-            return 'sampai usia 99 tahun';
-        } else {
-            return `${term} tahun`;
-        }
+      if (term == 60) return 'sampai usia 60 tahun';
+      if (term == 99) return 'sampai usia 99 tahun';
+      return `${term} tahun`;
     });
 
     // 3. BANDINGKAN: Apakah daftar yang lama dan yang baru sama?
     //    (Kita ubah jadi string JSON agar mudah dibandingkan)
     if (JSON.stringify(currentOptions) === JSON.stringify(newOptions)) {
       console.log('Opsi Masa Pembayaran sama, tidak perlu di-update.');
-      masaSel.disabled = false; // Aktifkan kembali dropdown
-      return; // Hentikan fungsi karena tidak ada yang perlu diubah
-    }
+    } else {
 
     // 4. JIKA BERBEDA, baru perbarui dropdown
-    console.log('Opsi Masa Pembayaran berbeda, sedang di-update.');
-    masaSel.innerHTML = '<option disabled selected value="">Pilih</option>';
-    newOptions.forEach(termText => {
-      const option = document.createElement('option');
-      option.textContent = termText;
-      masaSel.appendChild(option);
-    });
+      console.log('Opsi Masa Pembayaran berbeda, sedang di-update.');
+      masaSel.innerHTML = '<option disabled selected value="">Pilih</option>';
+      newOptions.forEach(termText => {
+        const option = document.createElement('option');
+        option.textContent = termText;
+        masaSel.appendChild(option);
+      });
+      masaSel.value = currentSelection;
+    }
 
     // Coba atur kembali pilihan pengguna yang lama
     masaSel.value = currentSelection;
@@ -251,7 +251,8 @@ async function updateMasaOptionsFromSheet(productName) {
     console.error(error);
     masaSel.innerHTML = '<option disabled selected value="">Gagal memuat</option>';
   } finally {
-    masaSel.disabled = false; // Selalu aktifkan kembali dropdown di akhir
+    masaSel.disabled = false;
+    hitungBtn.disabled = false; // Selalu aktifkan kembali dropdown di akhir
   }
 }
 
