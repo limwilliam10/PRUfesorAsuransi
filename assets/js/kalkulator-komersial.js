@@ -57,13 +57,14 @@ async function estimatePremium({up, age, gender, produk, masa, smoke}) {
 }
 
 // Fungsi untuk mengambil data diskon
-async function getDiscountPercentage({produk, up}) {
-    if (!produk || !up) return 0;
+async function getDiscountPercentage({produk, up, smoke}) {
+    if (!produk || !up || !smoke) return 0;
 
     // Bangun URL dengan parameter kriteria
     const url = new URL('https://script.google.com/macros/s/AKfycbxX9Y5LpmshAp32UPVJs4VkgfWXVd64SvISBpzxVpDiHItyiZJBJcW9KWsTbVa8zyArIg/exec');
     url.searchParams.set('type', 'diskon');
     url.searchParams.set('produk', produk);
+    url.searchParams.set('smoke', smoke);
     url.searchParams.set('up', up);
     
     try {
@@ -125,7 +126,7 @@ async function calc() {
     fillSummary();
 
     const raw = await estimatePremium(data); 
-    const discPct = await getDiscountPercentage({ produk: data.produk, up: data.up });
+    const discPct = await getDiscountPercentage({ produk: data.produk, up: data.up, smoke: data.smoke });
     
     kalkulatorContainer.querySelector('#disc').textContent = discPct;
     
