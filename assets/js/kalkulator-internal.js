@@ -243,6 +243,7 @@ async function updateMasaOptionsFromSheet(productName) {
       });
       if (newOptions.includes(currentSelection)) {
         masaSel.value = currentSelection;}
+        else {masaSel.selectedIndex = 0;}
     }
 
     // Coba atur kembali pilihan pengguna yang lama
