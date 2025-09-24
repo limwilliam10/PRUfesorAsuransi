@@ -185,12 +185,10 @@ const produkSel = kalkulatorContainer.querySelector('#produk');
 const defaultMasa = ['5 tahun','10 tahun','15 tahun'];
 // Fungsi baru untuk mengambil dan mengisi pilihan Masa Pembayaran
 async function updateMasaOptionsFromSheet(productName) {
-  // Kosongkan dan nonaktifkan dropdown saat memuat
-  masaSel.innerHTML = '<option disabled selected value="">Memuat...</option>';
-  masaSel.disabled = true;
+  masaSel.disabled = true; // Nonaktifkan sementara saat proses
 
   if (!productName) {
-    masaSel.innerHTML = '<option disabled selected value="">Pilih produk dulu</option>';
+    masaSel.disabled = false;
     return;
   }
 
@@ -202,22 +200,44 @@ async function updateMasaOptionsFromSheet(productName) {
     const response = await fetch(url);
     if (!response.ok) throw new Error('Gagal mengambil data masa pembayaran.');
     
-    const termsList = await response.json();
+    const termsListFromSheet = await response.json(); // Data baru dari sheet, misal: [10]
 
-    // Kosongkan lagi dan isi dengan data baru
+    // --- LOGIKA PERBANDINGAN BARU DIMULAI DI SINI ---
+
+    // 1. Ambil daftar pilihan yang TAMPIL SAAT INI di dropdown
+    const currentOptions = [];
+    for (let i = 0; i < masaSel.options.length; i++) {
+      // Lewati pilihan "Pilih"
+      if (masaSel.options[i].value !== "") {
+        currentOptions.push(masaSel.options[i].textContent);
+      }
+    }
+    
+    // 2. Olah data BARU dari Google Sheet agar formatnya sama ("10 tahun")
+    const newOptions = termsListFromSheet.map(term => `${term} tahun`);
+
+    // 3. BANDINGKAN: Apakah daftar yang lama dan yang baru sama?
+    //    (Kita ubah jadi string JSON agar mudah dibandingkan)
+    if (JSON.stringify(currentOptions) === JSON.stringify(newOptions)) {
+      console.log('Opsi Masa Pembayaran sama, tidak perlu di-update.');
+      masaSel.disabled = false; // Aktifkan kembali dropdown
+      return; // Hentikan fungsi karena tidak ada yang perlu diubah
+    }
+
+    // 4. JIKA BERBEDA, baru perbarui dropdown
+    console.log('Opsi Masa Pembayaran berbeda, sedang di-update.');
     masaSel.innerHTML = '<option disabled selected value="">Pilih</option>';
-    termsList.forEach(term => {
+    newOptions.forEach(termText => {
       const option = document.createElement('option');
-      // Format teksnya di sini, misal: "5 tahun"
-      option.textContent = `${term} tahun`;
+      option.textContent = termText;
       masaSel.appendChild(option);
     });
-
-    masaSel.disabled = false; // Aktifkan kembali dropdown
 
   } catch (error) {
     console.error(error);
     masaSel.innerHTML = '<option disabled selected value="">Gagal memuat</option>';
+  } finally {
+    masaSel.disabled = false; // Selalu aktifkan kembali dropdown di akhir
   }
 }
 
