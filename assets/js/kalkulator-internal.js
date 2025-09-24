@@ -187,6 +187,9 @@ const defaultMasa = ['5 tahun','10 tahun','15 tahun'];
 async function updateMasaOptionsFromSheet(productName) {
   masaSel.disabled = true; // Nonaktifkan sementara saat proses
 
+  // Simpan pilihan pengguna saat ini sebelum diubah
+  const currentSelection = masaSel.value;
+
   if (!productName) {
     masaSel.disabled = false;
     return;
@@ -232,6 +235,9 @@ async function updateMasaOptionsFromSheet(productName) {
       option.textContent = termText;
       masaSel.appendChild(option);
     });
+
+    // Coba atur kembali pilihan pengguna yang lama
+    masaSel.value = currentSelection;
 
   } catch (error) {
     console.error(error);
