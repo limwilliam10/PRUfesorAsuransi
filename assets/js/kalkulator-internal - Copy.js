@@ -24,7 +24,7 @@ function getAgeFromDateInput(ymd){
     return Math.max(0, age);
 }
 
-const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJGLWDt4d-npwDy_5mpcds8kJE7ivwfqn-n8dcHJa1OluPcASMe1Mb1xTVuFiORqXw/exec';
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyI7kAyp5L6c6F0gpquppagMhgpcXfhx8Kr-HraUWAbPnync05cNv2eqbgaMEmZpwyH/exec';
 
 // Fungsi baru untuk mengambil data dan mencari premi
 async function estimatePremium({up, age, gender, produk, masa, smoke}) {
@@ -183,48 +183,28 @@ kalkulatorContainer.querySelector('#hitung').addEventListener('click', calc);
 const masaSel = kalkulatorContainer.querySelector('#masa');
 const produkSel = kalkulatorContainer.querySelector('#produk');
 const defaultMasa = ['5 tahun','10 tahun','15 tahun'];
-// Fungsi baru untuk mengambil dan mengisi pilihan Masa Pembayaran
-async function updateMasaOptionsFromSheet(productName) {
-  // Kosongkan dan nonaktifkan dropdown saat memuat
-  masaSel.innerHTML = '<option disabled selected value="">Memuat...</option>';
-  masaSel.disabled = true;
-
-  if (!productName) {
-    masaSel.innerHTML = '<option disabled selected value="">Pilih produk dulu</option>';
-    return;
-  }
-
-  try {
-    const url = new URL(GOOGLE_APPS_SCRIPT_URL);
-    url.searchParams.set('type', 'getTerms');
-    url.searchParams.set('product', productName);
-
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Gagal mengambil data masa pembayaran.');
-    
-    const termsList = await response.json();
-
-    // Kosongkan lagi dan isi dengan data baru
-    masaSel.innerHTML = '<option disabled selected value="">Pilih</option>';
-    termsList.forEach(term => {
-      const option = document.createElement('option');
-      // Format teksnya di sini, misal: "5 tahun"
-      option.textContent = `${term} tahun`;
-      masaSel.appendChild(option);
-    });
-
-    masaSel.disabled = false; // Aktifkan kembali dropdown
-
-  } catch (error) {
-    console.error(error);
-    masaSel.innerHTML = '<option disabled selected value="">Gagal memuat</option>';
-  }
+function updateMasaOptions(product){
+    let opts = defaultMasa;
+    if(product === 'PRUCinta'){
+    opts = ['10 Tahun'];
+    } else if(product === 'PRUHeritage'){
+    opts = ['5 tahun','10 tahun','15 tahun','sampai usia 60 tahun','sampai usia 99 tahun'];
+    }
+    const current = masaSel.value;
+    masaSel.innerHTML = '';
+    const ph = document.createElement('option');
+    ph.value = '';
+    ph.textContent = 'Pilih';
+    ph.disabled = true; ph.selected = true;
+    masaSel.appendChild(ph);
+    opts.forEach(t => { const o=document.createElement('option'); o.textContent=t; masaSel.appendChild(o); });
+    if(opts.includes(current)){
+    masaSel.value = current; ph.selected = false;
+    }
 }
 
-// Tambahkan event listener untuk memanggil fungsi baru saat produk berubah
-produkSel.addEventListener('change', e => {
-  updateMasaOptionsFromSheet(e.target.value);
-});
+// Trigger update saat produk berubah (di form & filter)
+produkSel.addEventListener('change', e => updateMasaOptions(e.target.value));
 
 // Set default saat load
 updateMasaOptions(produkSel.value || '');
@@ -262,9 +242,6 @@ function validateForm(){
     clearErrors();
     var ok = true;
     var required = [
-    ['nama','Nama wajib diisi'],
-    ['wa','Nomor WA wajib diisi'],
-    ['email','Email wajib diisi'],
     ['gender','Jenis kelamin wajib dipilih'],
     ['dob','Tanggal lahir wajib diisi'],
     ['smoke','Status merokok wajib dipilih'],
