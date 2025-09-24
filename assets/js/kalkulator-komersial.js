@@ -241,6 +241,9 @@ async function updateMasaOptionsFromSheet(productName) {
         option.textContent = termText;
         masaSel.appendChild(option);
       });
+      // Cek apakah pilihan lama masih ada di daftar pilihan yang baru.
+      // Jika ya, pilih kembali secara otomatis.
+      // Jika tidak valid, paksa kembali ke "Pilih" dengan mengatur index-nya ke 0.
       if (newOptions.includes(currentSelection)) {
         masaSel.value = currentSelection;}
         else {masaSel.selectedIndex = 0;}
