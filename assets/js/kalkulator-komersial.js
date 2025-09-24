@@ -321,3 +321,43 @@ document.addEventListener('keydown', (e) => { if(e.key === 'Escape') hideResults
 window.addEventListener('resize', fitModal);
 if(window.visualViewport){ window.visualViewport.addEventListener('resize', fitModal); }
 if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitModal); }
+
+// Fungsi baru untuk mengambil daftar produk dari Google Sheet dan mengisinya ke dropdown
+async function populateProductDropdown() {
+  const productSelect = kalkulatorContainer.querySelector('#produk');
+  // Beri tahu pengguna bahwa data sedang dimuat
+  productSelect.disabled = true;
+  productSelect.options[0].textContent = 'Memuat produk...';
+
+  try {
+    const url = new URL('https://script.google.com/macros/s/AKfycbxX9Y5LpmshAp32UPVJs4VkgfWXVd64SvISBpzxVpDiHItyiZJBJcW9KWsTbVa8zyArIg/exec');
+    url.searchParams.set('type', 'getProducts');
+    
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Gagal mengambil daftar produk.');
+    }
+    
+    const productList = await response.json();
+
+    // Kembalikan ke teks "Pilih" dan aktifkan kembali dropdown
+    productSelect.options[0].textContent = 'Pilih';
+    productSelect.disabled = false;
+    
+    // Isi dropdown dengan pilihan produk dari Google Sheet
+    productList.forEach(productName => {
+      const option = document.createElement('option');
+      option.value = productName;
+      option.textContent = productName;
+      productSelect.appendChild(option);
+    });
+
+  } catch (error) {
+    console.error(error);
+    // Tampilkan pesan error jika gagal
+    productSelect.options[0].textContent = 'Gagal Memuat';
+  }
+}
+
+// Panggil fungsi ini saat seluruh konten halaman HTML sudah siap
+document.addEventListener('DOMContentLoaded', populateProductDropdown);
