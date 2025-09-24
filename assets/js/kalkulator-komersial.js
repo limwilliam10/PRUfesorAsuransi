@@ -226,9 +226,6 @@ produkSel.addEventListener('change', e => {
   updateMasaOptionsFromSheet(e.target.value);
 });
 
-// Set default saat load
-updateMasaOptions(produkSel.value || '');
-
 // --- Input restrictions & formatting ---
 // Uang Pertanggungan: angka saja + thousand separator saat mengetik
 const upField = kalkulatorContainer.querySelector('#up');
