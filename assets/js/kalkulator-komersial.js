@@ -217,7 +217,15 @@ async function updateMasaOptionsFromSheet(productName) {
     }
     
     // 2. Olah data BARU dari Google Sheet agar formatnya sama ("10 tahun")
-    const newOptions = termsListFromSheet.map(term => `${term} tahun`);
+    const newOptions = termsListFromSheet.map(term => {
+        if (term == 60) {
+            return 'sampai usia 60 tahun';
+        } else if (term == 99) {
+            return 'sampai usia 99 tahun';
+        } else {
+            return `${term} tahun`;
+        }
+    });
 
     // 3. BANDINGKAN: Apakah daftar yang lama dan yang baru sama?
     //    (Kita ubah jadi string JSON agar mudah dibandingkan)
