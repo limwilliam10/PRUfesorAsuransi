@@ -428,11 +428,14 @@ async function populateProductDropdown() {
 // Panggil fungsi ini saat seluruh konten halaman HTML sudah siap
 document.addEventListener('DOMContentLoaded', populateProductDropdown);
 
-// Fungsi untuk menampilkan kalkulator jika password benar
+
+
+
+
+/* Fungsi untuk menampilkan kalkulator jika password benar
 function showCalculator() {
   kalkulatorContainer.querySelector('#kalkulator-premi-container').style.display = 'block';
 }
-
 // Fungsi untuk meminta password saat halaman dimuat
 function askPassword() {
   var password = prompt("Silakan masukkan password untuk mengakses Kalkulator Internal USTeams:");
@@ -443,6 +446,5 @@ function askPassword() {
     window.location.href = "https://www.prufesorasuransi.com/kalkulator-premi";
   }
 }
-
 // Panggil fungsi saat halaman siap
 document.addEventListener('DOMContentLoaded', askPassword);
