@@ -246,7 +246,7 @@ async function updateMasaOptionsFromSheet(productName) {
       // Jika tidak valid, paksa kembali ke "Pilih" dengan mengatur index-nya ke 0.
       if (newOptions.includes(currentSelection)) {
         masaSel.value = currentSelection;}
-        else {masaSel.selectedIndex = 0;}
+        else {masaSel.innerHTML = '<option disabled selected value="">Pilih</option>';}
     }
 
     // Coba atur kembali pilihan pengguna yang lama
