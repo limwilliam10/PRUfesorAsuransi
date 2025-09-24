@@ -4,24 +4,35 @@ const kalkulatorContainer = document.getElementById('kalkulator-premi-container'
 // Helpers
 const fmtIDR = (n) => n.toLocaleString('id-ID', { style:'currency', currency:'IDR', maximumFractionDigits:0 });
 function getAgeFromDateInput(ymd){
-    if(!ymd) return 0; // value from <input type="date"> is yyyy-mm-dd
-    const [y,m,d] = ymd.split('-').map(Number);
-    if(!y||!m||!d) return 0;
-    const today = new Date();
-    const tM = today.getMonth() + 1;
-    const tD = today.getDate();
-    const base = today.getFullYear() - y; // year difference
-    const passed = (tM > m) || (tM === m && tD > d);       // ulang tahun SUDAH lewat tahun ini
-    const todayIs = (tM === m && tD === d);                // tepat hari ulang tahun
+  if(!ymd) return 0;
+  const [y,m,d] = ymd.split('-').map(Number);
+  if(!y||!m||!d) return 0;
+  
+  const today = new Date();
+  const tY = today.getFullYear();
+  const tM = today.getMonth() + 1;
+  const tD = today.getDate();
+  
+  // Cek apakah hari ini adalah tepat hari ulang tahun
+  const todayIsBirthday = (tM === m && tD === d);
 
-    // Age Last Birthday baseline
-    let age = base;
-    if(!passed && !todayIs) age = base - 1;                // ulang tahun BELUM lewat → kurangi 1
+  // 1. Hitung usia kronologis (usia sebenarnya pada ulang tahun terakhir)
+  let age = tY - y;
+  const hasBirthdayPassed = (tM > m) || (tM === m && tD > d);
+  if (!hasBirthdayPassed && !todayIsBirthday) {
+    age = age - 1;
+  }
 
-    // Business rule: jika ulang tahun sudah lewat (strict), gunakan "usia berikutnya"
-    if(passed) age = age + 1;
+  // --- LOGIKA BARU SESUAI DEFINISI ANDA ---
+  // 2. Terapkan aturan Age Next Birthday (ANB) yang benar
+  // Jika hari ini BUKAN hari ulang tahun yang tepat, bulatkan usia ke atas.
+  if (!todayIsBirthday) {
+    age = age + 1;
+  }
+  // Jika hari ini TEPAT hari ulang tahun, usia tidak diubah (sudah bulat).
+  // ------------------------------------------
 
-    return Math.max(0, age);
+  return Math.max(0, age);
 }
 
 const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJGLWDt4d-npwDy_5mpcds8kJE7ivwfqn-n8dcHJa1OluPcASMe1Mb1xTVuFiORqXw/exec';
