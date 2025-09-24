@@ -241,7 +241,8 @@ async function updateMasaOptionsFromSheet(productName) {
         option.textContent = termText;
         masaSel.appendChild(option);
       });
-      masaSel.value = currentSelection;
+      if (newOptions.includes(currentSelection)) {
+        masaSel.value = currentSelection;}
     }
 
     // Coba atur kembali pilihan pengguna yang lama
