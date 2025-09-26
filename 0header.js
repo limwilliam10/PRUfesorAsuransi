@@ -125,13 +125,13 @@ let appHeader = `
               
               <li><a href="https://www.prufesorasuransi.com#services">Services</a></li>
               <li><a href="https://www.prufesorasuransi.com#team">Team</a></li>
-              <li><a href="articles">Articles</a></li>
+              <li><a href="/articles">Articles</a></li>
               <li><a href="https://www.prufesorasuransi.com#contact">Contact</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->
     
-          <a href="get-quote" class="get-started-btn scrollto">Get Quote</a>
+          <a href="/get-quote" class="get-started-btn scrollto">Get Quote</a>
         </div>
       </header>
       <!-- End Header -->

@@ -71,11 +71,11 @@ let appFooter = `
               <div class="col-lg-4 col-md-3 footer-links">
                 <h4>Our Services</h4>
                 <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Dedicated Servicing Agent</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Ilustrasi Premi Asuransi</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Review Polis Asuransi Lama</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">QnA Terkait Asuransi</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="get-quote">Peluang Bisnis</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="/get-quote">Dedicated Servicing Agent</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="/get-quote">Ilustrasi Premi Asuransi</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="/get-quote">Review Polis Asuransi Lama</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="/get-quote">QnA Terkait Asuransi</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="/get-quote">Peluang Bisnis</a></li>
                 </ul>
               </div>
             </div>
