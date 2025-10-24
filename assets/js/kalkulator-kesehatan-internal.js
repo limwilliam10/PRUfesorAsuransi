@@ -353,6 +353,30 @@ async function updatePlanOptions(productName) {
     
     const planList = await response.json();
 
+    // --- LOGIKA PENGURUTAN PLAN ---
+    const sortOrder = [
+      "Bronze A",
+      "Bronze B",
+      "Silver A",
+      "Silver B",
+      "Gold",
+      "Platinum",
+      "Diamond"
+    ];
+
+    planList.sort((a, b) => {
+      const indexA = sortOrder.indexOf(a);
+      const indexB = sortOrder.indexOf(b);
+
+      // Logika untuk menangani Plan yang tidak ada di daftar 'sortOrder', agar diletakkan di bagian bawah
+      if (indexA === -1 && indexB === -1) return 0; // Biarkan urutan aslinya jika keduanya tidak ada
+      if (indexA === -1) return 1;  // 'a' tidak ada, letakkan di bawah
+      if (indexB === -1) return -1; // 'b' tidak ada, letakkan di bawah (artinya 'a' di atas)
+
+      // Urutkan berdasarkan posisi di array 'sortOrder'
+      return indexA - indexB;
+    });
+
     // Kembalikan ke teks "Pilih Plan" dan aktifkan kembali dropdown
     planSel.innerHTML = '<option disabled selected value="">Pilih</option>';
     
