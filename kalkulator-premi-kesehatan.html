@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Kalkulator Premi Asuransi Jiwa | W&G PRUfesor Asuransi</title>
+  <title>Kalkulator Premi Asuransi Kesehatan | W&G PRUfesor Asuransi</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,9 +46,9 @@
 
         <ol>
           <li><a href="https://www.prufesorasuransi.com">Home</a></li>
-          <li>Kalkulator Premi Asuransi Jiwa</li>
+          <li>Kalkulator Premi Asuransi Kesehatan</li>
         </ol>
-        <h2>Kalkulator Premi Asuransi Jiwa</h2>
+        <h2>Kalkulator Premi Asuransi Kesehatan</h2>
 
       </div>
     </section>
@@ -60,9 +60,8 @@
     <div class="spinner"></div>
   </div>
   <div class="wrap">
-    <div class="title" style="font-size:32px;">Kalkulator Premi Asuransi Jiwa</div>
-    <div class="subtitle">Ilustrasi ini difokuskan untuk usia 18 tahun ke atas. Ilustrasi untuk usia di bawah 18 tahun, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa untuk usia di bawah 18 tahun, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
-    <div class="subtitle">Jika terdapat selisih dengan ilustrasi resmi dari Prudential, maka ilustrasi resmi dari Prudential yang lebih benar. Untuk ilustrasi resmi, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div></div>
+    <div class="title"style="font-size:32px;">Kalkulator Premi Asuransi Kesehatan</div>
+    <div class="subtitle">Jika terdapat selisih dengan ilustrasi resmi dari Prudential, maka ilustrasi resmi dari Prudential yang lebih benar. Untuk ilustrasi resmi, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi kesehatan, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div></div>
     <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan.</div>
 
     <!-- FORM CARD -->
@@ -97,18 +96,15 @@
             <option disabled selected value="">Pilih</option>
           </select>
         </div>
-        <div class="field"><label>Uang Pertanggungan</label>
-          <div class="split">
-            <span class="unit">Rp</span>
-            <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 1.000.000.000"/>
-          </div>
+        <div class="field"><label>Plan</label>
+          <select id="plan">
+            <option disabled selected value="">Pilih Produk Dulu</option>
+          </select>
         </div>
-        <div class="field"><label>Masa Pembayaran</label>
-          <select id="masa">
-            <option disabled selected value="">Pilih</option>
-            <option>5 tahun</option>
-            <option>10 tahun</option>
-            <option>15 tahun</option>
+        <div class="field"><label>Pakai Saver (Deductible)</label>
+          <select id="saver">
+            <option selected value="No">No</option>
+            <option value="Yes">Yes</option>
           </select>
         </div>
       </div>
@@ -130,8 +126,8 @@
             <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
             <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
             <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
-            <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
-            <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
+            <div class="item"><span class="label">Plan</span><span class="val" id="s_plan">-</span></div>
+            <div class="item"><span class="label">Saver (Deductible)</span><span class="val" id="s_saver">-</span></div>
           </div>
 
           <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
@@ -187,7 +183,7 @@
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
-  <script src="/assets/js/kalkulator-jiwa-komersial.js"></script>
+  <script src="/assets/js/kalkulator-kesehatan-internal.js"></script>
   <script>
     // Disable Right Click
     document.addEventListener("contextmenu", function (event) {
