@@ -311,9 +311,6 @@ function validateForm(){
     clearErrors();
     var ok = true;
     var required = [
-    ['nama','Nama wajib diisi'],
-    ['wa','Nomor WA wajib diisi'],
-    ['email','Email wajib diisi'],
     ['gender','Jenis kelamin wajib dipilih'],
     ['dob','Tanggal lahir wajib diisi'],
     ['smoke','Status merokok wajib dipilih'],
