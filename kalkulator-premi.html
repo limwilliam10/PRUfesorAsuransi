@@ -10,24 +10,24 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/assets/img/favicon.png" rel="icon">
-  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="/assets/css/style.css" rel="stylesheet">
-  <link href="/assets/css/kalkulator.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/kalkulator.css" rel="stylesheet">
 
 </head>
 
@@ -35,7 +35,7 @@
 
   <!-- ======= Header ======= -->
   <header id="app-header"></header>
-  <script async src="/0header.js"></script>
+  <script async src="0header.js"></script>
   <!-- End Header -->
 
   <main id="main">
@@ -54,140 +54,237 @@
     </section>
     <!-- End Breadcrumbs -->
 
-    <section class="inner-page">
       <div id="kalkulator-premi-container">
-    <div id="loader" class="loader-backdrop hide">
-    <div class="spinner"></div>
-  </div>
-  <div class="wrap">
-    <div class="title" style="font-size:32px;">Kalkulator Premi Asuransi Jiwa</div>
-    <div class="subtitle">Ilustrasi ini difokuskan untuk usia 18 tahun ke atas. Ilustrasi untuk usia di bawah 18 tahun, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa untuk usia di bawah 18 tahun, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
-    <div class="subtitle">Jika terdapat selisih dengan ilustrasi resmi dari Prudential, maka ilustrasi resmi dari Prudential yang lebih benar.</div>
-    <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Untuk ilustrasi resmi, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
+        <div id="loader" class="loader-backdrop hide">
+          <div class="spinner"></div>
+        </div>
+        <div class="wrap">
+          <div class="title" style="font-size:32px;">Kalkulator Premi Asuransi Jiwa</div>
+          <div class="subtitle">Ilustrasi ini difokuskan untuk usia 18 tahun ke atas. Ilustrasi untuk usia di bawah 18 tahun, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa untuk usia di bawah 18 tahun, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
+          <div class="subtitle">Jika terdapat selisih dengan ilustrasi resmi dari Prudential, maka ilustrasi resmi dari Prudential yang lebih benar.</div>
+          <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Untuk ilustrasi resmi, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
+          <div class="subtitle">Untuk mengetahui ringkasan manfaat setiap produk, silakan baca <a href="#highlight">di bawah halaman ini</a>.</div>
 
-    <!-- FORM CARD -->
-    <div class="card" id="formCard" style="margin-top:14px">
-      <div class="cardHeader"></div>
-      <div class="grid" id="formGrid">
-        <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
-        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
-        <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
-        <div class="field"><label>Jenis Kelamin</label>
-          <select id="gender">
-            <option disabled selected value="">Pilih</option>
-            <option value="Pria">Pria</option>
-            <option value="Wanita">Wanita</option>
-          </select>
-        </div>
-        <div class="field"><label>Tanggal Lahir</label>
-          <div class="dateWrap">
-            <input id="dob" type="date" class="input dateNative" lang="id-ID"/>
-            <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
+          <!-- FORM CARD -->
+          <div class="card" id="formCard" style="margin-top:14px">
+            <div class="cardHeader"></div>
+            <div class="grid" id="formGrid">
+              <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
+              <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
+              <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
+              <div class="field"><label>Jenis Kelamin</label>
+                <select id="gender">
+                  <option disabled selected value="">Pilih</option>
+                  <option value="Pria">Pria</option>
+                  <option value="Wanita">Wanita</option>
+                </select>
+              </div>
+              <div class="field"><label>Tanggal Lahir</label>
+                <div class="dateWrap">
+                  <input id="dob" type="date" class="input dateNative" lang="id-ID"/>
+                  <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
+                </div>
+              </div>
+              <div class="field"><label>Status Merokok</label>
+                <select id="smoke">
+                  <option disabled selected value="">Pilih</option>
+                  <option value="Perokok">Perokok</option>
+                  <option value="Bukan Perokok">Bukan Perokok</option>
+                </select>
+              </div>
+              <div class="field"><label>Nama Produk</label>
+                <select id="produk">
+                  <option disabled selected value="">Pilih</option>
+                </select>
+              </div>
+              <div class="field"><label>Uang Pertanggungan</label>
+                <div class="split">
+                  <span class="unit">Rp</span>
+                  <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 1.000.000.000"/>
+                </div>
+              </div>
+              <div class="field"><label>Masa Pembayaran</label>
+                <select id="masa">
+                  <option disabled selected value="">Pilih</option>
+                  <option>5 tahun</option>
+                  <option>10 tahun</option>
+                  <option>15 tahun</option>
+                </select>
+              </div>
+            </div>
+            <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
+
+            <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+
+            <!-- RESULTS (Floating; shown after Calculate) -->
+            <div id="resultsBackdrop" class="modalBackdrop hide"></div>
+            <div id="resultsFloat" class="floatResults hide" role="dialog" aria-live="polite" aria-modal="true">
+              <button class="closeBtn" id="closeResults" aria-label="Tutup">×</button>
+              <div class="floatBody">
+                <h3 style="margin:0 0 10px; font-size:16px;font-family: Inter;"><b>Ringkasan Input</b></h3>
+                <div class="summaryGrid">
+                  <div class="item"><span class="label">Nama</span><span class="val" id="s_nama">-</span></div>
+                  <div class="item"><span class="label">Nomor Handphone (WhatsApp)</span><span class="val" id="s_wa">-</span></div>
+                  <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
+                  <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
+                  <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
+                  <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
+                  <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
+                  <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
+                  <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
+                </div>
+
+                <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+
+                <div class="results">
+                  <div class="resultCard accent-warn">
+                    <h4 style="font-family: Inter;"><b>Estimasi premi (sebelum diskon)</b></h4>
+                    <div id="premi" class="value">Rp – / tahun</div>
+                  </div>
+                  <div class="resultCard">
+                    <h4 style="font-family: Inter;"><b>Diskon (khusus hari ini)</b></h4>
+                    <div class="value"><span id="disc">0</span>%</div>
+                  </div>
+                  <div class="resultCard accent-ok">
+                    <h4 style="font-family: Inter;"><b>Estimasi premi (setelah diskon)</b></h4>
+                    <div id="premiNet" class="value">Rp – / tahun</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer">
+              <div>
+                <a href="https://www.instagram.com/prufesorasuransi"><img src="assets/img/logo/IG-logo.png" width="20px" height="20px"> <b>@prufesorasuransi</b></a>
+              </div>
+              <div>
+                <a href="https://www.tiktok.com/@prufesorasuransi"><b>@prufesorasuransi</b> <img src="assets/img/logo/Tiktok-logo.png" width="20px" height="20px"></a>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="field"><label>Status Merokok</label>
-          <select id="smoke">
-            <option disabled selected value="">Pilih</option>
-            <option value="Perokok">Perokok</option>
-            <option value="Bukan Perokok">Bukan Perokok</option>
-          </select>
-        </div>
-        <div class="field"><label>Nama Produk</label>
-          <select id="produk">
-            <option disabled selected value="">Pilih</option>
-          </select>
-        </div>
-        <div class="field"><label>Uang Pertanggungan</label>
-          <div class="split">
-            <span class="unit">Rp</span>
-            <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 1.000.000.000"/>
-          </div>
-        </div>
-        <div class="field"><label>Masa Pembayaran</label>
-          <select id="masa">
-            <option disabled selected value="">Pilih</option>
-            <option>5 tahun</option>
-            <option>10 tahun</option>
-            <option>15 tahun</option>
-          </select>
         </div>
       </div>
-      <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
 
-      <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+      <!-- ======= Product Highlight Section ======= -->
+      <div class="section-title" data-aos="fade-up"><h2>PRODUCT HIGHLIGHT</h2></div>
+      <div class="container">
+        <section id="highlight" class="faq">
+          <ul class="faq-list accordion" data-aos="fade-up">
 
-      <!-- RESULTS (Floating; shown after Calculate) -->
-      <div id="resultsBackdrop" class="modalBackdrop hide"></div>
-      <div id="resultsFloat" class="floatResults hide" role="dialog" aria-live="polite" aria-modal="true">
-        <button class="closeBtn" id="closeResults" aria-label="Tutup">×</button>
-        <div class="floatBody">
-          <h3 style="margin:0 0 10px; font-size:16px;font-family: Inter;"><b>Ringkasan Input</b></h3>
-          <div class="summaryGrid">
-            <div class="item"><span class="label">Nama</span><span class="val" id="s_nama">-</span></div>
-            <div class="item"><span class="label">Nomor Handphone (WhatsApp)</span><span class="val" id="s_wa">-</span></div>
-            <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
-            <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
-            <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
-            <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
-            <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
-            <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
-            <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
-          </div>
+            <li>
+              <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#highlight1"><b>PCB88 : PRUCritical Benefit 88</b><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+              <div id="highlight1" class="collapse" data-bs-parent=".faq-list">
+                  <p>📌 <strong>Usia Masuk:</strong> 1-60 tahun (usia berikutnya)</p>
+                  <p>📌 <strong>Pilihan Masa Bayar:</strong> 5, 10, 15 tahun, dan single premi</p>
+                  <p>📌 <strong>Minimum Premi/Kontribusi atau UP/SA:</strong><br>● Minimal premi 300 ribu/bulan (3.3 juta/tahun)<br>● Maksimal Uang Pertanggungan (UP) 12 Milyar</p>
+                  <p>📌 <strong>Masa Perlindungan:</strong> hingga usia 88 tahun</p>
+                  <br>
+                  <p>✅ <strong>Manfaat Akhir Perlindungan:</strong> cair 100% UP<br>● Atau pengembalian 100% premi di tahun ke-20, polis berakhir</p>
+                  <p>✅ <strong>Manfaat Meninggal Dunia:</strong> cair 100% UP<br>● Karena kecelakaan +200% UP (max 6 Milyar)</p>
+                  <p>✅ <strong>Manfaat Penyakit Kritis:</strong> cair 100% UP<br>● Jika terdiagnosa 1 dari 60 penyakit kritis</p>
+                  <p>✅ <strong>Manfaat Tambahan/Bonus/Lainnya:</strong><br>● +10% UP, max 200 Juta (tidak mengurangi UP)<br>● Untuk perawatan angioplasty & tindakan medis invasif jantung lainnya</p>
+              </div>
+            </li>
 
-          <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+            <li>
+              <a data-bs-toggle="collapse" data-bs-target="#highlight2" class="collapsed"><b>PCA : PRUCritical Amanah (Basic & Plus)</b><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+              <div id="highlight2" class="collapse" data-bs-parent=".faq-list">
+                  <p>📌 <strong>Usia Masuk:</strong> 6-60 tahun (usia berikutnya)</p>
+                  <p>📌 <strong>Pilihan Masa Bayar:</strong> 5, 10, 15 tahun</p>
+                  <p>📌 <strong>Minimum Premi/Kontribusi atau UP/SA:</strong><br>● Minimal Santunan Asuransi (SA) 100 Juta<br>● Min. Kontribusi 500 ribu/bulan (5.5 juta/tahun)</p>
+                  <p>📌 <strong>Masa Perlindungan:</strong><br>● <b>Basic:</b> hingga usia 120 tahun<br>● <b>Plus:</b> hingga usia 85 tahun</p>
+                <br>
+                  <p>✅ <strong>Manfaat Akhir Perlindungan:</strong><br>● <b>Basic:</b> -<br>● <b>Plus:</b> cair 100% SA (+nilai tunai)</p>
+                  <p>✅ <strong>Manfaat Penyakit Kritis Tahap Awal:</strong><br>● Cair 25% SA, max 1 Milyar (mengurangi SA)<br>● Bebas kontribusi, polis tetap aktif</p>
+                  <p>✅ <strong>Manfaat Penyakit Kritis Tahap Akhir:</strong><br>● <b>Basic:</b> cair 100% SA atau sisa 75% SA<br>● <b>Plus:</b> cair 100% SA atau sisa 75% SA (+nilai tunai)</p>
+                  <p>✅ <strong>Manfaat Meninggal Dunia:</strong><br>● <b>Basic:</b> cair 100% SA atau sisa 75% SA<br>● <b>Plus:</b> cair 100% SA atau sisa 75% SA (+nilai tunai)</p>
+                  <p>✅ <strong>Manfaat Tambahan/Bonus/Lainnya:</strong><br>● +10% SA, max 200 Juta (tidak mengurangi SA)<br>● Untuk perawatan angioplasty & tindakan medis invasif jantung lainnya</p>
+              </div>
+            </li>
 
-          <div class="results">
-            <div class="resultCard accent-warn">
-              <h4 style="font-family: Inter;"><b>Estimasi premi (sebelum diskon)</b></h4>
-              <div id="premi" class="value">Rp – / tahun</div>
-            </div>
-            <div class="resultCard">
-              <h4 style="font-family: Inter;"><b>Diskon (khusus hari ini)</b></h4>
-              <div class="value"><span id="disc">0</span>%</div>
-            </div>
-            <div class="resultCard accent-ok">
-              <h4 style="font-family: Inter;"><b>Estimasi premi (setelah diskon)</b></h4>
-              <div id="premiNet" class="value">Rp – / tahun</div>
-            </div>
-          </div>
-        </div>
+            <li>
+              <a data-bs-toggle="collapse" data-bs-target="#highlight3" class="collapsed"><b>PRUFuture (Plan Basic)</b><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+              <div id="highlight3" class="collapse" data-bs-parent=".faq-list">
+                  <p>📌 <strong>Usia Masuk:</strong> 1-70 tahun (usia berikutnya)</p>
+                  <p>📌 <strong>Pilihan Masa Bayar:</strong> 5, 10, 15 tahun</p>
+                  <p>📌 <strong>Minimum Premi/Kontribusi atau UP/SA:</strong><br>● Minimal Uang Pertanggungan (UP) 100 Juta</p>
+                  <p>📌 <strong>Masa Perlindungan:</strong> hingga usia 100 tahun</p>
+                  <br>
+                  <p>✅ <strong>Manfaat Meninggal Dunia:</strong> cair 100% SA</p>
+                  <p>✅ <strong>Manfaat Tambahan/Bonus/Lainnya:</strong><br>● Diskon premi sesuai nilai UP yang dipilih dan status merokok</p>
+              </div>
+            </li>
+
+            <li>
+              <a data-bs-toggle="collapse" data-bs-target="#highlight4" class="collapsed"><b>PRUCinta</b><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+              <div id="highlight4" class="collapse" data-bs-parent=".faq-list">
+                  <p>📌 <strong>Usia Masuk:</strong> 1-60 tahun (usia berikutnya)</p>
+                  <p>📌 <strong>Pilihan Masa Bayar:</strong> 10 tahun</p>
+                  <p>📌 <strong>Minimum Premi/Kontribusi atau UP/SA:</strong><br>● Minimal Santunan Asuransi (SA) 20 Juta<br>● Min. Kontribusi 300 ribu/bulan (3.3 juta/tahun)</p>
+                  <p>📌 <strong>Masa Perlindungan:</strong> 20 tahun</p>
+                  <br>
+                  <p>✅ <strong>Manfaat Akhir Perlindungan:</strong><br>● Pengembalian 100% premi & polis berakhir, atau;<br>● Perpanjangan tanpa UW atau medical ulang<br>● Opsi perpanjang: kontribusi naik atau SA turun</p>
+                  <p>✅ <strong>Manfaat Meninggal Dunia:</strong> cair 100% SA<br>● Karena kecelakaan* +200% SA (max 7M)<br>● Kecelakaan* saat ramadhan +300% SA (max 7M)<br>● *(6 minggu sejak hari pertama puasa, max 70thn)</p>
+                  <p>✅ <strong>Manfaat Tambahan/Bonus/Lainnya:</strong><br>● Diskon premi sesuai nilai SA yang dipilih<br>● Manfaat tambahan nilai tunai (jika ada)</p>
+              </div>
+            </li>
+
+            <li>
+              <a data-bs-toggle="collapse" data-bs-target="#highlight5" class="collapsed"><b>PRUAnugerah Syariah</b><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+              <div id="highlight5" class="collapse" data-bs-parent=".faq-list">
+                  <p>📌 <strong>Usia Masuk:</strong> 1-70 tahun (usia berikutnya)</p>
+                  <p>📌 <strong>Pilihan Masa Bayar:</strong> 5, 10, 15 tahun</p>
+                  <p>📌 <strong>Minimum Premi/Kontribusi atau UP/SA:</strong><br>● Minimal Santunan Asuransi (SA) 20 Juta</p>
+                  <p>📌 <strong>Masa Perlindungan:</strong> hingga usia 120 tahun</p>
+                  <br>
+                  <p>✅ <strong>Manfaat Akhir Perlindungan:</strong> cair 100% SA</p>
+                  <p>✅ <strong>Manfaat Meninggal Dunia:</strong> cair 100% SA<br>● Sebelum terima dana pensiun +50% SA<br>● Karena kecelakaan +100% SA (max 2M)<br>● Kecelakaan saat lebaran / haji +200% SA (max 2M)</p>
+                  <p>✅ <strong>Manfaat Penyakit Kritis (1 dari 60 penyakit):</strong><br>● Bebas kontribusi, polis tetap aktif</p>
+                  <p>✅ <strong>Manfaat Dana Usia Mapan (Dana Pensiun):</strong><br>● Pengembalian 100% premi, polis tetap aktif<br>● Di usia nasabah 60 tahun atau usia polis 25 tahun</p>
+                  <p>✅ <strong>Manfaat Tambahan/Bonus/Lainnya:</strong><br>● Diskon premi sesuai nilai SA yang dipilih<br>● Manfaat tambahan nilai tunai (jika ada)</p>
+              </div>
+            </li>
+
+            <li>
+              <a data-bs-toggle="collapse" data-bs-target="#highlight6" class="collapsed"><b>PRUHeritage Syariah</b><i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+              <div id="highlight6" class="collapse" data-bs-parent=".faq-list">
+                  <p>📌 <strong>Usia Masuk:</strong> 1-70 tahun (usia berikutnya)</p>
+                  <p>📌 <strong>Pilihan Masa Bayar:</strong> 5, 10, 15 tahun, atau hingga usia 60 tahun, atau hingga usia 99 tahun</p>
+                  <p>📌 <strong>Minimum Premi/Kontribusi atau UP/SA:</strong><br>● Minimal Santunan Asuransi (SA) 100 Juta<br>● Min. Kontribusi 500 ribu/bulan (5.5 juta/tahun)<br>● Min. Kontribusi 1 juta/bulan (11 juta/tahun) untuk masa bayar 5 tahun</p>
+                  <p>📌 <strong>Masa Perlindungan:</strong> hingga usia 100 tahun</p>
+                  <br>
+                  <p>✅ <strong>Manfaat Meninggal Dunia:</strong> cair 100% SA<br>● Kenaikan 10% SA tiap 5 tahun, setelah 10 tahun<br>● Tambahan booster proteksi ini maksimal di 50%</p>
+                  <p>✅ <strong>Manfaat Tambahan/Bonus/Lainnya:</strong><br>● Diskon premi sesuai nilai SA yang dipilih</p>
+              </div>
+            </li>
+
+          </ul>
+        </section>
       </div>
-
-      <div class="footer">
-        <div>
-          <a href="https://www.instagram.com/prufesorasuransi"><img src="/assets/img/logo/IG-logo.png" width="20px" height="20px"> <b>@prufesorasuransi</b></a>
-        </div>
-        <div>
-          <a href="https://www.tiktok.com/@prufesorasuransi"><b>@prufesorasuransi</b> <img src="/assets/img/logo/Tiktok-logo.png" width="20px" height="20px"></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    </section>
+      <!-- End Product Highlight Section -->
 
   </main>
   <!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="app-footer"></footer>
-  <script async src="/0footer.js"></script>
+  <script async src="0footer.js"></script>
   <!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="/assets/vendor/aos/aos.js"></script>
-  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="/assets/js/main.js"></script>
-  <script src="/assets/js/kalkulator-jiwa-komersial.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/kalkulator-jiwa-komersial.js"></script>
   <script>
     // Disable Right Click
     document.addEventListener("contextmenu", function (event) {
