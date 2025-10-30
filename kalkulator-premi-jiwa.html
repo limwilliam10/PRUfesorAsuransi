@@ -56,396 +56,190 @@
 
     <section class="inner-page">
       <div id="kalkulator-premi-container">
-    <div id="loader" class="loader-backdrop hide">
-    <div class="spinner"></div>
-  </div>
-  <div class="wrap">
-    <div class="title" style="font-size:32px;">Kalkulator Premi Asuransi Jiwa</div>
-    <div class="subtitle">Ilustrasi ini difokuskan untuk usia 18 tahun ke atas. Ilustrasi untuk usia di bawah 18 tahun, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa untuk usia di bawah 18 tahun, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
-    <div class="subtitle">Jika terdapat selisih dengan ilustrasi resmi dari Prudential, maka ilustrasi resmi dari Prudential yang lebih benar.</div>
-    <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Untuk ilustrasi resmi, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
+        <div id="loader" class="loader-backdrop hide">
+          <div class="spinner"></div>
+        </div>
+        <div class="wrap">
+          <div class="title" style="font-size:32px;">Kalkulator Premi Asuransi Jiwa</div>
+          <div class="subtitle">Ilustrasi ini difokuskan untuk usia 18 tahun ke atas. Ilustrasi untuk usia di bawah 18 tahun, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa untuk usia di bawah 18 tahun, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
+          <div class="subtitle">Jika terdapat selisih dengan ilustrasi resmi dari Prudential, maka ilustrasi resmi dari Prudential yang lebih benar.</div>
+          <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan. Untuk ilustrasi resmi, silakan <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik untuk tahu ilustrasi premi asuransi jiwa, apa bisa dibantu?" target="_blank">hubungi kami</a>.</div>
 
-    <!-- FORM CARD -->
-    <div class="card" id="formCard" style="margin-top:14px">
-      <div class="cardHeader"></div>
-      <div class="grid" id="formGrid">
-        <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
-        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
-        <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
-        <div class="field"><label>Jenis Kelamin</label>
-          <select id="gender">
-            <option disabled selected value="">Pilih</option>
-            <option value="Pria">Pria</option>
-            <option value="Wanita">Wanita</option>
-          </select>
-        </div>
-        <div class="field"><label>Tanggal Lahir</label>
-          <div class="dateWrap">
-            <input id="dob" type="date" class="input dateNative" lang="id-ID"/>
-            <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
+          <!-- FORM CARD -->
+          <div class="card" id="formCard" style="margin-top:14px">
+            <div class="cardHeader"></div>
+            <div class="grid" id="formGrid">
+              <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
+              <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
+              <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
+              <div class="field"><label>Jenis Kelamin</label>
+                <select id="gender">
+                  <option disabled selected value="">Pilih</option>
+                  <option value="Pria">Pria</option>
+                  <option value="Wanita">Wanita</option>
+                </select>
+              </div>
+              <div class="field"><label>Tanggal Lahir</label>
+                <div class="dateWrap">
+                  <input id="dob" type="date" class="input dateNative" lang="id-ID"/>
+                  <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
+                </div>
+              </div>
+              <div class="field"><label>Status Merokok</label>
+                <select id="smoke">
+                  <option disabled selected value="">Pilih</option>
+                  <option value="Perokok">Perokok</option>
+                  <option value="Bukan Perokok">Bukan Perokok</option>
+                </select>
+              </div>
+              <div class="field"><label>Nama Produk</label>
+                <select id="produk">
+                  <option disabled selected value="">Pilih</option>
+                </select>
+              </div>
+              <div class="field"><label>Uang Pertanggungan</label>
+                <div class="split">
+                  <span class="unit">Rp</span>
+                  <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 1.000.000.000"/>
+                </div>
+              </div>
+              <div class="field"><label>Masa Pembayaran</label>
+                <select id="masa">
+                  <option disabled selected value="">Pilih</option>
+                  <option>5 tahun</option>
+                  <option>10 tahun</option>
+                  <option>15 tahun</option>
+                </select>
+              </div>
+            </div>
+            <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
+
+            <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+
+            <!-- RESULTS (Floating; shown after Calculate) -->
+            <div id="resultsBackdrop" class="modalBackdrop hide"></div>
+            <div id="resultsFloat" class="floatResults hide" role="dialog" aria-live="polite" aria-modal="true">
+              <button class="closeBtn" id="closeResults" aria-label="Tutup">×</button>
+              <div class="floatBody">
+                <h3 style="margin:0 0 10px; font-size:16px;font-family: Inter;"><b>Ringkasan Input</b></h3>
+                <div class="summaryGrid">
+                  <div class="item"><span class="label">Nama</span><span class="val" id="s_nama">-</span></div>
+                  <div class="item"><span class="label">Nomor Handphone (WhatsApp)</span><span class="val" id="s_wa">-</span></div>
+                  <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
+                  <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
+                  <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
+                  <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
+                  <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
+                  <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
+                  <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
+                </div>
+
+                <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+
+                <div class="results">
+                  <div class="resultCard accent-warn">
+                    <h4 style="font-family: Inter;"><b>Estimasi premi (sebelum diskon)</b></h4>
+                    <div id="premi" class="value">Rp – / tahun</div>
+                  </div>
+                  <div class="resultCard">
+                    <h4 style="font-family: Inter;"><b>Diskon (khusus hari ini)</b></h4>
+                    <div class="value"><span id="disc">0</span>%</div>
+                  </div>
+                  <div class="resultCard accent-ok">
+                    <h4 style="font-family: Inter;"><b>Estimasi premi (setelah diskon)</b></h4>
+                    <div id="premiNet" class="value">Rp – / tahun</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer">
+              <div>
+                <a href="https://www.instagram.com/prufesorasuransi"><img src="assets/img/logo/IG-logo.png" width="20px" height="20px"> <b>@prufesorasuransi</b></a>
+              </div>
+              <div>
+                <a href="https://www.tiktok.com/@prufesorasuransi"><b>@prufesorasuransi</b> <img src="assets/img/logo/Tiktok-logo.png" width="20px" height="20px"></a>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="field"><label>Status Merokok</label>
-          <select id="smoke">
-            <option disabled selected value="">Pilih</option>
-            <option value="Perokok">Perokok</option>
-            <option value="Bukan Perokok">Bukan Perokok</option>
-          </select>
-        </div>
-        <div class="field"><label>Nama Produk</label>
-          <select id="produk">
-            <option disabled selected value="">Pilih</option>
-          </select>
-        </div>
-        <div class="field"><label>Uang Pertanggungan</label>
-          <div class="split">
-            <span class="unit">Rp</span>
-            <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 1.000.000.000"/>
-          </div>
-        </div>
-        <div class="field"><label>Masa Pembayaran</label>
-          <select id="masa">
-            <option disabled selected value="">Pilih</option>
-            <option>5 tahun</option>
-            <option>10 tahun</option>
-            <option>15 tahun</option>
-          </select>
         </div>
       </div>
-      <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
-
-      <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
-
-      <!-- RESULTS (Floating; shown after Calculate) -->
-      <div id="resultsBackdrop" class="modalBackdrop hide"></div>
-      <div id="resultsFloat" class="floatResults hide" role="dialog" aria-live="polite" aria-modal="true">
-        <button class="closeBtn" id="closeResults" aria-label="Tutup">×</button>
-        <div class="floatBody">
-          <h3 style="margin:0 0 10px; font-size:16px;font-family: Inter;"><b>Ringkasan Input</b></h3>
-          <div class="summaryGrid">
-            <div class="item"><span class="label">Nama</span><span class="val" id="s_nama">-</span></div>
-            <div class="item"><span class="label">Nomor Handphone (WhatsApp)</span><span class="val" id="s_wa">-</span></div>
-            <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
-            <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
-            <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
-            <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
-            <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
-            <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
-            <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
-          </div>
-
-          <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
-
-          <div class="results">
-            <div class="resultCard accent-warn">
-              <h4 style="font-family: Inter;"><b>Estimasi premi (sebelum diskon)</b></h4>
-              <div id="premi" class="value">Rp – / tahun</div>
-            </div>
-            <div class="resultCard">
-              <h4 style="font-family: Inter;"><b>Diskon (khusus hari ini)</b></h4>
-              <div class="value"><span id="disc">0</span>%</div>
-            </div>
-            <div class="resultCard accent-ok">
-              <h4 style="font-family: Inter;"><b>Estimasi premi (setelah diskon)</b></h4>
-              <div id="premiNet" class="value">Rp – / tahun</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer">
-        <div>
-          <a href="https://www.instagram.com/prufesorasuransi"><img src="assets/img/logo/IG-logo.png" width="20px" height="20px"> <b>@prufesorasuransi</b></a>
-        </div>
-        <div>
-          <a href="https://www.tiktok.com/@prufesorasuransi"><b>@prufesorasuransi</b> <img src="assets/img/logo/Tiktok-logo.png" width="20px" height="20px"></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
     </section>
 
-    <!-- ======= Tabs Section ======= -->
-    <section id="products" class="tabs">
+  <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Products</h2>
+          <h2>Frequently Asked Questions</h2>
         </div>
 
-        <ul class="nav nav-tabs row d-flex">
-          <li class="nav-item col-3">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-              <h4 class="d-none d-lg-block">Asuransi Kesehatan1</h4>
-            </a>
+        <ul class="faq-list accordion" data-aos="fade-up">
+
+          <li>
+            <a data-bs-toggle="collapse" class="collapsed" data-bs-target="#faq1">Berapakah tarif untuk masing-masing layanan / services yang disediakan di atas?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+            <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Semua layanan tersebut kami sediakan secara <strong>gratis</strong>. Dedicated servicing agent adalah layanan prioritas yang kami sediakan khusus untuk nasabah-nasabah aktif kami, sedangkan layanan lainnya seperti ilustrasi premi asuransi, review polis asuransi lama, QnA atau tanya jawab seputar asuransi tersedia untuk semua orang (baik nasabah maupun calon nasabah) secara <strong>gratis</strong>.
+              </p>
+            </div>
           </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
-              <h4 class="d-none d-lg-block">Asuransi Kritis1</h4>
-            </a>
+
+          <li>
+            <a data-bs-toggle="collapse" data-bs-target="#faq2" class="collapsed">Polis asuransi dari perusahaan apa saja yang dapat direview?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+            <div id="faq2" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Kami terbuka untuk review polis asuransi dari perusahaan apapun. Hingga saat ini, kami sudah pernah meninjau polis dari berbagai perusahaan seperti Prudential, Manulife, Allianz, Ace Life / Chubb, FWD, dan masih banyak lagi.
+              </p>
+            </div>
           </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
-              <h4 class="d-none d-lg-block">Asuransi Jiwa1</h4>
-            </a>
+
+          <li>
+            <a data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">Saya masih sehat dan belum ada penyakit apapun, apa tidak sebaiknya saya buka polis asuransi nanti saja jika butuh?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+            <div id="faq3" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Perlu diketahui bahwa setiap perusahaan asuransi tidak akan lagi menerima calon nasabah jika sudah ada riwayat penyakit, kalaupun diterima kemungkinan besar penyakit yang sudah ada akan dikecualikan untuk ditanggung. Sehingga justru waktu yang tepat untuk memiliki polis asuransi adalah ketika masih sehat dan belum ada riwayat penyakit, agar tidak ada penyakit yang dikecualikan nantinya.<br><br>
+                Tidak jarang juga biaya sebuah penundaan akan mengakibatkan premi yang lebih tinggi jika dibeli di usia lebih tua, hal ini dikarenakan seiring bertambahnya usia maka resiko kesehatan pasti meningkat, sehingga premi asuransi juga pasti akan meningkat.
+              </p>
+            </div>
           </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-4">
-              <h4 class="d-none d-lg-block">Asset Creation1</h4>
-            </a>
+
+          <li>
+            <a data-bs-toggle="collapse" data-bs-target="#faq4" class="collapsed">Saya masih punya asuransi dari kantor, apakah saya masih perlu membeli sendiri asuransi swasta?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+            <div id="faq4" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Tidak seperti asuransi swasta yang lebih fokus menyediakan manfaat rawat inap, asuransi kantor biasanya menyediakan kombinasi manfaat antara rawat inap dan rawat jalan. Sehingga akan terdapat banyak keterbatasan manfaat untuk rawat inapnya, seperti batas harga kamar atau batas pemakaian per kejadian. Hal ini perlu dicermati baik-baik di dalam polis (mintalah kepada tim HR perusahaan Anda, jika belum ada) agar Anda tahu limit / batasannya sehingga tidak perlu menomboki biaya rawat inap Anda.<br><br> 
+                Asuransi dari kantor juga hanya memberi proteksi selama Anda masih menjadi karyawan, sehingga tidak akan mengcover lagi jika Anda sudah pensiun. Pada saat itu, tarif premi asuransi swasta pasti sudah sangat tinggi dan besar kemungkinan sudah memiliki riwayat penyakit sehingga lebih sulit untuk mengajukan asuransi swasta.
+                Oleh karena itu penting untuk mempersiapkan asuransi swasta sedini mungkin, lebih baik mempersiapkan asuransi 5 tahun lebih awal daripada 5 menit terlambat.
+              </p>
+            </div>
           </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-5">
-              <h4 class="d-none d-lg-block">Asuransi Kesehatan2</h4>
-            </a>
+
+          <li>
+            <a data-bs-toggle="collapse" data-bs-target="#faq5" class="collapsed">Saya laki-laki berusia 35 tahun, kira-kira berapa harga premi asuransi yang harus saya bayar?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+            <div id="faq5" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Harga premi asuransi bukan hanya ditentukan dari jenis kelamin dan usia, tetapi ada banyak faktor yang menentukan. Faktor lainnya seperti kondisi kesehatan, kondisi finansial, wilayah pertanggungan, ataupun kelas kamar dapat mempengaruhi harga premi setiap orang.<br><br>
+                Oleh karena itu, penting untuk kami lakukan penilaian terlebih dahulu agar kami dapat menawarkan produk asuransi yang sesuai kebutuhan, serta sesuai dengan kemampuan finansial Anda. Segera hubungi kami untuk mendapatkan ilustrasi premi asuransi yang sesuai dengan kebutuhan dan kemampuan Anda.
+              </p>
+            </div>
           </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-6">
-              <h4 class="d-none d-lg-block">Asuransi Kritis2</h4>
-            </a>
+
+          <li>
+            <a data-bs-toggle="collapse" data-bs-target="#faq6" class="collapsed">Saya tertarik untuk mencoba peluang bisnis di bidang asuransi, berapa biaya yang harus saya bayar dan modal yang harus saya siapkan?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-x icon-close"></i></a>
+            <div id="faq6" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Untuk join di bisnis asuransi bersama Prudential, tidak dipungut biaya sepeserpun alias <strong>gratis</strong>. Tidak diwajibkan juga menyiapkan modal gadget seperti iPad ataupun gadget lainnya dengan spesifikasi tertentu, semua dapat dikerjakan melalui perangkat smartphone masing-masing.<br><br>
+                Untuk info lebih lanjut mengenai tahapan bergabung di bisnis asuransi bersama Prudential, silakan mengisi form melalui tombol Get Quote di pojok kanan atas website ini.
+              </p>
+            </div>
           </li>
-          <li class="nav-item col-3">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-7">
-              <h4 class="d-none d-lg-block">Asuransi Jiwa2</h4>
-            </a>
-          </li>
+
         </ul>
-
-        <div class="tab-content">
-          <div class="tab-pane active show" id="tab-1">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
-                <h3>Pastikan Anda dan orang yang Anda cintai memiliki akses ke layanan kesehatan yang berkualitas</h3>
-                <p class="fst-italic">
-                  Hasil survey WHO mengungkap penyebab orang tutup usia secara umum ada tiga, yaitu: <strong>sakit (92%)</strong>, kecelakaan (3%), dan lain-lain (5%).
-                  <strong>Artinya</strong>, 9 dari 10 orang meninggal pasti mengalami sakit dahulu, dan pastinya 92% kemungkinan biaya rumah sakit yang besar akan terjadi dalam hidup kita.
-                </p>
-                <p>
-                  Ada beberapa cara untuk mendapatkan akses layanan kesehatan yang <strong>berkualitas</strong>:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Menarik tabungan hasil kerja 20-30 tahun atau menjual aset seperti tanah, emas, rumah, mobil, deposito.</li>
-                  <li><i class="ri-check-double-line"></i> Pinjam dari keluarga, saudara, teman atau meminta sumbangan dari kerabat dan masyarakat.</li>
-                  <li><i class="ri-check-double-line"></i> Memakai BPJS, tetapi dengan segala keterbatasan dan kekurangannya.</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up" data-aos-delay="200">
-                <img src="assets/img/AsuransiKesehatanPic.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              Semua cara tersebut tak ada yang nyaman dan pastinya mempengaruhi kondisi finansial keluarga Anda.
-              Tetapi tak perlu khawatir, produk <strong>black card</strong> terbaru kami mampu menanggung seluruh biaya rumah sakit <strong>sesuai tagihan</strong>. Dengan premi terjangkau dan dapat disesuaikan dengan kemampuan, Anda tak perlu lagi mengkhawatirkan biaya yang timbul setiap memilih layanan di rumah sakit.
-            </p>
-            <p>
-              <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan produk asuransi kesehatannya, boleh minta tolong dijelaskan lebih lanjut?" target="_blank">Konsultasikan dengan kami</a> dan miliki segera produk asuransi kesehatan untuk mendapatkan akses layanan kesehatan terbaik.
-            </p>
-          </div>
-
-          <div class="tab-pane" id="tab-2">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Proteksi resiko penyakit kritis, sebagai bekal keluarga menghadapi masa depan dengan ketenangan dan keberanian</strong></h3>
-                <p>
-                  Menghadapi penyakit kritis (kanker, serangan jantung, stroke, gagal ginjal, dan kondisi serius lainnya) seperti berhadapan dengan gunung es, terdapat banyak "<strong>hidden cost</strong>" yang seringkali menjadi penyebab kebangkrutan, seperti:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Biaya pengobatan eksperimental, alternatif, tradisional yang dibutuhkan tetapi tidak ditanggung asuransi kesehatan</li>
-                  <li><i class="ri-check-double-line"></i> Biaya akomodasi seperti tiket pesawat dan penginapan selama perawatan di luar kota ataupun luar negeri</li>
-                  <li><i class="ri-check-double-line"></i> Income yang hilang selama tidak bekerja karena dirawat</li>
-                  <li><i class="ri-check-double-line"></i> Biaya hidup keluarga yang terus berjalan selama masa recovery (biaya dapur, pendidikan anak, pajak kendaraan).</li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/AsuransiKritisPic.PNG" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              Oleh karena itu, kami hadir untuk menyediakan produk asuransi penyakit kritis yang mencakup hingga 60 jenis penyakit.
-              Berbeda dari asuransi kesehatan yang bersifat cashless, asuransi kritis bersifat cash-out sehingga akan cair uang tunai yang dapat dipakai untuk membayar hidden cost di atas.
-            </p>
-            <p>
-              Keunggulan lain dari produk kami dapat menggaransi Anda <strong>anti rugi</strong>. Premi yang dibayarkan pasti <strong>lebih kecil</strong> dibanding uang tunai pertanggungan yang dijanjikan,
-              serta premi akan <strong>dikembalikan seluruhnya 100%</strong> di akhir periode jika Anda tidak mengalami resiko penyakit kritis.
-            </p>
-            <p>
-              <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan produk asuransi kritisnya, boleh minta tolong dijelaskan lebih lanjut?" target="_blank">Konsultasikan dengan kami</a> dan miliki segera produk asuransi kritis untuk melindungi aset dan keluarga Anda.
-            </p>
-          </div>
-
-          <div class="tab-pane" id="tab-3">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Asuransi Jiwa, bukan karena Anda harus meninggal, tetapi karena yang ditinggalkan harus tetap hidup</h3>
-                <p>
-                  Bicara mengenai asuransi jiwa, masih banyak yang salah mengartikan sebagai mengharapkan keluarga cepat meninggal. Masih banyak juga yang menganggap tidak penting karena setelah meninggal tidak dapat merasakan manfaatnya.
-                </p>
-                <p>
-                  Padahal, asuransi jiwa bukan tentang apa yang Anda butuhkan, tetapi tentang apa yang keluarga Anda butuhkan ketika Anda sudah tidak ada.
-                  Karena semua manusia pasti akan tutup usia, hanya saja tidak tahu <strong>kapannya</strong>. Pertanyaanya, setelah meninggal mana yang anda inginkan?
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Keluarga tertimpa beban kehidupan, pendidikan anak terganggu</li>
-                  <li><i class="ri-check-double-line"></i> Keluarga mendapatkan santunan untuk biaya hidup, istri dan anak tak perlu mencari ayah baru</li>
-                </ul>
-                <p>
-                  Semua orang pasti menginginkan <strong>pilihan yang kedua</strong>. Oleh karena itu, kami hadir menyediakan produk asuransi jiwa untuk melindungi keluarga Anda tercinta.
-                </p>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/AsuransiJiwaPic.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              <br>
-              Produk yang kami tawarkan juga memiliki keunggulan serupa dengan asuransi kritis, yaitu menggaransi Anda <strong>anti rugi</strong>. Premi yang dibayarkan pasti <strong>lebih kecil</strong> dibanding uang tunai pertanggungan yang dijanjikan, serta premi akan <strong>dikembalikan seluruhnya 100%</strong> di akhir periode jika Anda belum mengalami resiko meninggal.
-            </p>
-            <p>
-              <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan produk asuransi jiwanya, boleh minta tolong dijelaskan lebih lanjut?" target="_blank">Konsultasikan dengan kami</a> dan miliki segera produk asuransi jiwa agar kehidupan keluarga Anda selalu terjamin.
-            </p>
-          </div>
-
-          <div class="tab-pane" id="tab-4">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Program terakhir asuransi yang jarang diketahui orang lain, hasil dari produk terbaru Prudential</h3>
-                <p>
-                  Apakah anda termasuk golongan <strong>1%</strong> orang yang mengakumulasi kekayaan dan aset melebihi kebutuhan dan gaya hidup Anda sekeluarga saat ini? Jika ya, Pernahkah terpikir untuk apa Anda melakukan hal tersebut?
-                </p>
-                <p>
-                  Pada akhirnya seluruh kekayaan dan aset tersebut akan Anda wariskan kepada anak dan cucu ketika Anda tutup usia.
-                  Permasalahannya, para pewaris anda pasti lebih miskin karena aset warisan Anda harus mereka bagi-bagi.
-                  Bagaimana jika kami bongkar <strong>sebuah program</strong> yang masih jarang diketahui orang lain, di mana:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Anda bisa siapkan <strong>nilai warisan yang sama atau bahkan lebih besar</strong> dari aset Anda saat ini, untuk masing-masing ahli waris</li>
-                  <li><i class="ri-check-double-line"></i> <strong>Modal yang disetor jauh lebih murah</strong> daripada nilai warisan, sisa aset dapat Anda gunakan sebagai dana pensiun hari tua</li>
-                  <li><i class="ri-check-double-line"></i> Setoran modal <strong>dapat dicicil</strong> flat tanpa bunga selama 5-15 tahun. Jika Anda baru cicil 1 bulan lalu meninggal, <strong>tak perlu melanjutkan cicilan dan warisan langsung cair</strong></li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/AssetCreationPic.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              Tertarik untuk tahu lebih lanjut? <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan program asset creation kalian, mari bertemu dan jelaskan saya lebih lanjut!" target="_blank">Hubungi kami</a> untuk mengatur jadwal temu untuk kupas tuntas program ini secara khusus.
-            </p>
-          </div>
-
-          <div class="tab-pane" id="tab-5">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Program terakhir asuransi yang jarang diketahui orang lain, hasil dari produk terbaru Prudential</h3>
-                <p>
-                  Apakah anda termasuk golongan <strong>1%</strong> orang yang mengakumulasi kekayaan dan aset melebihi kebutuhan dan gaya hidup Anda sekeluarga saat ini? Jika ya, Pernahkah terpikir untuk apa Anda melakukan hal tersebut?
-                </p>
-                <p>
-                  Pada akhirnya seluruh kekayaan dan aset tersebut akan Anda wariskan kepada anak dan cucu ketika Anda tutup usia.
-                  Permasalahannya, para pewaris anda pasti lebih miskin karena aset warisan Anda harus mereka bagi-bagi.
-                  Bagaimana jika kami bongkar <strong>sebuah program</strong> yang masih jarang diketahui orang lain, di mana:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Anda bisa siapkan <strong>nilai warisan yang sama atau bahkan lebih besar</strong> dari aset Anda saat ini, untuk masing-masing ahli waris</li>
-                  <li><i class="ri-check-double-line"></i> <strong>Modal yang disetor jauh lebih murah</strong> daripada nilai warisan, sisa aset dapat Anda gunakan sebagai dana pensiun hari tua</li>
-                  <li><i class="ri-check-double-line"></i> Setoran modal <strong>dapat dicicil</strong> flat tanpa bunga selama 5-15 tahun. Jika Anda baru cicil 1 bulan lalu meninggal, <strong>tak perlu melanjutkan cicilan dan warisan langsung cair</strong></li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/AssetCreationPic.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              Tertarik untuk tahu lebih lanjut? <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan program asset creation kalian, mari bertemu dan jelaskan saya lebih lanjut!" target="_blank">Hubungi kami</a> untuk mengatur jadwal temu untuk kupas tuntas program ini secara khusus.
-            </p>
-          </div>
-
-          <div class="tab-pane" id="tab-6">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Program terakhir asuransi yang jarang diketahui orang lain, hasil dari produk terbaru Prudential</h3>
-                <p>
-                  Apakah anda termasuk golongan <strong>1%</strong> orang yang mengakumulasi kekayaan dan aset melebihi kebutuhan dan gaya hidup Anda sekeluarga saat ini? Jika ya, Pernahkah terpikir untuk apa Anda melakukan hal tersebut?
-                </p>
-                <p>
-                  Pada akhirnya seluruh kekayaan dan aset tersebut akan Anda wariskan kepada anak dan cucu ketika Anda tutup usia.
-                  Permasalahannya, para pewaris anda pasti lebih miskin karena aset warisan Anda harus mereka bagi-bagi.
-                  Bagaimana jika kami bongkar <strong>sebuah program</strong> yang masih jarang diketahui orang lain, di mana:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Anda bisa siapkan <strong>nilai warisan yang sama atau bahkan lebih besar</strong> dari aset Anda saat ini, untuk masing-masing ahli waris</li>
-                  <li><i class="ri-check-double-line"></i> <strong>Modal yang disetor jauh lebih murah</strong> daripada nilai warisan, sisa aset dapat Anda gunakan sebagai dana pensiun hari tua</li>
-                  <li><i class="ri-check-double-line"></i> Setoran modal <strong>dapat dicicil</strong> flat tanpa bunga selama 5-15 tahun. Jika Anda baru cicil 1 bulan lalu meninggal, <strong>tak perlu melanjutkan cicilan dan warisan langsung cair</strong></li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/AssetCreationPic.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              Tertarik untuk tahu lebih lanjut? <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan program asset creation kalian, mari bertemu dan jelaskan saya lebih lanjut!" target="_blank">Hubungi kami</a> untuk mengatur jadwal temu untuk kupas tuntas program ini secara khusus.
-            </p>
-          </div>
-
-          <div class="tab-pane" id="tab-7">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Program terakhir asuransi yang jarang diketahui orang lain, hasil dari produk terbaru Prudential</h3>
-                <p>
-                  Apakah anda termasuk golongan <strong>1%</strong> orang yang mengakumulasi kekayaan dan aset melebihi kebutuhan dan gaya hidup Anda sekeluarga saat ini? Jika ya, Pernahkah terpikir untuk apa Anda melakukan hal tersebut?
-                </p>
-                <p>
-                  Pada akhirnya seluruh kekayaan dan aset tersebut akan Anda wariskan kepada anak dan cucu ketika Anda tutup usia.
-                  Permasalahannya, para pewaris anda pasti lebih miskin karena aset warisan Anda harus mereka bagi-bagi.
-                  Bagaimana jika kami bongkar <strong>sebuah program</strong> yang masih jarang diketahui orang lain, di mana:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Anda bisa siapkan <strong>nilai warisan yang sama atau bahkan lebih besar</strong> dari aset Anda saat ini, untuk masing-masing ahli waris</li>
-                  <li><i class="ri-check-double-line"></i> <strong>Modal yang disetor jauh lebih murah</strong> daripada nilai warisan, sisa aset dapat Anda gunakan sebagai dana pensiun hari tua</li>
-                  <li><i class="ri-check-double-line"></i> Setoran modal <strong>dapat dicicil</strong> flat tanpa bunga selama 5-15 tahun. Jika Anda baru cicil 1 bulan lalu meninggal, <strong>tak perlu melanjutkan cicilan dan warisan langsung cair</strong></li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/AssetCreationPic.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              Tertarik untuk tahu lebih lanjut? <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan program asset creation kalian, mari bertemu dan jelaskan saya lebih lanjut!" target="_blank">Hubungi kami</a> untuk mengatur jadwal temu untuk kupas tuntas program ini secara khusus.
-            </p>
-          </div>
-
-          <div class="tab-pane" id="tab-8">
-            <div class="row">
-              <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                <h3>Program terakhir asuransi yang jarang diketahui orang lain, hasil dari produk terbaru Prudential</h3>
-                <p>
-                  Apakah anda termasuk golongan <strong>1%</strong> orang yang mengakumulasi kekayaan dan aset melebihi kebutuhan dan gaya hidup Anda sekeluarga saat ini? Jika ya, Pernahkah terpikir untuk apa Anda melakukan hal tersebut?
-                </p>
-                <p>
-                  Pada akhirnya seluruh kekayaan dan aset tersebut akan Anda wariskan kepada anak dan cucu ketika Anda tutup usia.
-                  Permasalahannya, para pewaris anda pasti lebih miskin karena aset warisan Anda harus mereka bagi-bagi.
-                  Bagaimana jika kami bongkar <strong>sebuah program</strong> yang masih jarang diketahui orang lain, di mana:
-                </p>
-                <ul>
-                  <li><i class="ri-check-double-line"></i> Anda bisa siapkan <strong>nilai warisan yang sama atau bahkan lebih besar</strong> dari aset Anda saat ini, untuk masing-masing ahli waris</li>
-                  <li><i class="ri-check-double-line"></i> <strong>Modal yang disetor jauh lebih murah</strong> daripada nilai warisan, sisa aset dapat Anda gunakan sebagai dana pensiun hari tua</li>
-                  <li><i class="ri-check-double-line"></i> Setoran modal <strong>dapat dicicil</strong> flat tanpa bunga selama 5-15 tahun. Jika Anda baru cicil 1 bulan lalu meninggal, <strong>tak perlu melanjutkan cicilan dan warisan langsung cair</strong></li>
-                </ul>
-              </div>
-              <div class="col-lg-6 order-1 order-lg-2 text-center">
-                <img src="assets/img/AssetCreationPic.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-            <p>
-              Tertarik untuk tahu lebih lanjut? <a href="https://wa.me/+6282210001803?text=Hi William dan Gladys, saya tertarik dengan program asset creation kalian, mari bertemu dan jelaskan saya lebih lanjut!" target="_blank">Hubungi kami</a> untuk mengatur jadwal temu untuk kupas tuntas program ini secara khusus.
-            </p>
-          </div>
-
-        </div>
 
       </div>
     </section>
-    <!-- End Tabs Section -->
+    <!-- End Frequently Asked Questions Section -->
 
   </main>
   <!-- End #main -->
