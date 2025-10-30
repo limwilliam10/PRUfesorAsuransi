@@ -54,117 +54,115 @@
     </section>
     <!-- End Breadcrumbs -->
 
-    <section class="inner-page">
-      <div id="kalkulator-premi-container">
-    <div id="loader" class="loader-backdrop hide">
-    <div class="spinner"></div>
-  </div>
-  <div class="wrap">
-    <div class="title"style="font-size:32px;">Kalkulator Premi Asuransi Jiwa (<span class="muted">Internal USTeams</span>)</div>
-    <div class="subtitle">Kalkulator Premi ini dibuat unuk mempermudah internal USTeams Agency dalam mengestimasi premi asuransi jiwa.</div>
-    <div class="subtitle">Difokuskan untuk usia 18 tahun ke atas. Ilustrasi untuk usia di bawah 18 tahun, silakan mengacu pada Pruforce.</div>
-    <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan.</div>
-
-    <!-- FORM CARD -->
-    <div class="card" id="formCard" style="margin-top:14px">
-      <div class="cardHeader"></div>
-      <div class="grid" id="formGrid">
-        <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
-        <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
-        <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
-        <div class="field"><label>Jenis Kelamin</label>
-          <select id="gender">
-            <option disabled selected value="">Pilih</option>
-            <option value="Pria">Pria</option>
-            <option value="Wanita">Wanita</option>
-          </select>
-        </div>
-        <div class="field"><label>Tanggal Lahir</label>
-          <div class="dateWrap">
-            <input id="dob" type="date" class="input dateNative" lang="id-ID"/>
-            <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
-          </div>
-        </div>
-        <div class="field"><label>Status Merokok</label>
-          <select id="smoke">
-            <option disabled selected value="">Pilih</option>
-            <option value="Perokok">Perokok</option>
-            <option value="Bukan Perokok">Bukan Perokok</option>
-          </select>
-        </div>
-        <div class="field"><label>Nama Produk</label>
-          <select id="produk">
-            <option disabled selected value="">Pilih</option>
-          </select>
-        </div>
-        <div class="field"><label>Uang Pertanggungan</label>
-          <div class="split">
-            <span class="unit">Rp</span>
-            <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 1.000.000.000"/>
-          </div>
-        </div>
-        <div class="field"><label>Masa Pembayaran</label>
-          <select id="masa">
-            <option disabled selected value="">Pilih</option>
-            <option>5 tahun</option>
-            <option>10 tahun</option>
-            <option>15 tahun</option>
-          </select>
-        </div>
+    <div id="kalkulator-premi-container">
+      <div id="loader" class="loader-backdrop hide">
+       <div class="spinner"></div>
       </div>
-      <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
+      <div class="wrap">
+        <div class="title"style="font-size:32px;">Kalkulator Premi Asuransi Jiwa (<span class="muted">Internal USTeams</span>)</div>
+        <div class="subtitle">Kalkulator Premi ini dibuat unuk mempermudah internal USTeams Agency dalam mengestimasi premi asuransi jiwa.</div>
+        <div class="subtitle">Difokuskan untuk usia 18 tahun ke atas. Ilustrasi untuk usia di bawah 18 tahun, silakan mengacu pada Pruforce.</div>
+        <div class="subtitle">Isi data di bawah ini untuk mendapatkan estimasi premi tahunan.</div>
 
-      <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
-
-      <!-- RESULTS (Floating; shown after Calculate) -->
-      <div id="resultsBackdrop" class="modalBackdrop hide"></div>
-      <div id="resultsFloat" class="floatResults hide" role="dialog" aria-live="polite" aria-modal="true">
-        <button class="closeBtn" id="closeResults" aria-label="Tutup">×</button>
-        <div class="floatBody">
-          <h3 style="margin:0 0 10px; font-size:16px;font-family: Inter;"><b>Ringkasan Input</b></h3>
-          <div class="summaryGrid">
-            <div class="item"><span class="label">Nama</span><span class="val" id="s_nama">-</span></div>
-            <div class="item"><span class="label">Nomor Handphone (WhatsApp)</span><span class="val" id="s_wa">-</span></div>
-            <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
-            <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
-            <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
-            <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
-            <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
-            <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
-            <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
+        <!-- FORM CARD -->
+        <div class="card" id="formCard" style="margin-top:14px">
+          <div class="cardHeader"></div>
+          <div class="grid" id="formGrid">
+            <div class="field"><label>Nama</label><input id="nama" class="input" placeholder="Ketik di sini…"/></div>
+            <div class="field"><label>Nomor Handphone (WhatsApp)</label><input id="wa" class="input" inputmode="numeric" placeholder="0812xxxxxxx"/></div>
+            <div class="field"><label>Email Aktif</label><input id="email" class="input" placeholder="nama@domain.com"/></div>
+            <div class="field"><label>Jenis Kelamin</label>
+              <select id="gender">
+                <option disabled selected value="">Pilih</option>
+                <option value="Pria">Pria</option>
+                <option value="Wanita">Wanita</option>
+              </select>
+            </div>
+            <div class="field"><label>Tanggal Lahir</label>
+              <div class="dateWrap">
+                <input id="dob" type="date" class="input dateNative" lang="id-ID"/>
+                <span id="dobDisplay" class="dateDisplay" aria-hidden="true">dd-Mmm-yyyy</span>
+              </div>
+            </div>
+            <div class="field"><label>Status Merokok</label>
+              <select id="smoke">
+                <option disabled selected value="">Pilih</option>
+                <option value="Perokok">Perokok</option>
+                <option value="Bukan Perokok">Bukan Perokok</option>
+              </select>
+            </div>
+            <div class="field"><label>Nama Produk</label>
+              <select id="produk">
+                <option disabled selected value="">Pilih</option>
+              </select>
+            </div>
+            <div class="field"><label>Uang Pertanggungan</label>
+              <div class="split">
+                <span class="unit">Rp</span>
+                <input id="up" class="input" inputmode="numeric" placeholder="Contoh: 1.000.000.000"/>
+              </div>
+            </div>
+            <div class="field"><label>Masa Pembayaran</label>
+              <select id="masa">
+                <option disabled selected value="">Pilih</option>
+                <option>5 tahun</option>
+                <option>10 tahun</option>
+                <option>15 tahun</option>
+              </select>
+            </div>
           </div>
+          <div class="actions"><button class="btn" id="hitung">Calculate</button></div>
 
           <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
 
-          <div class="results">
-            <div class="resultCard accent-warn">
-              <h4 style="font-family: Inter;"><b>Estimasi premi (sebelum diskon)</b></h4>
-              <div id="premi" class="value">Rp – / tahun</div>
+          <!-- RESULTS (Floating; shown after Calculate) -->
+          <div id="resultsBackdrop" class="modalBackdrop hide"></div>
+          <div id="resultsFloat" class="floatResults hide" role="dialog" aria-live="polite" aria-modal="true">
+            <button class="closeBtn" id="closeResults" aria-label="Tutup">×</button>
+            <div class="floatBody">
+              <h3 style="margin:0 0 10px; font-size:16px;font-family: Inter;"><b>Ringkasan Input</b></h3>
+              <div class="summaryGrid">
+                <div class="item"><span class="label">Nama</span><span class="val" id="s_nama">-</span></div>
+                <div class="item"><span class="label">Nomor Handphone (WhatsApp)</span><span class="val" id="s_wa">-</span></div>
+                <div class="item"><span class="label">Email Aktif</span><span class="val" id="s_email">-</span></div>
+                <div class="item"><span class="label">Jenis Kelamin</span><span class="val" id="s_gender">-</span></div>
+                <div class="item"><span class="label">Tanggal Lahir</span><span class="val" id="s_dob">-</span></div>
+                <div class="item"><span class="label">Status Merokok</span><span class="val" id="s_smoke">-</span></div>
+                <div class="item"><span class="label">Nama Produk</span><span class="val" id="s_produk">-</span></div>
+                <div class="item"><span class="label">Uang Pertanggungan</span><span class="val" id="s_up">-</span></div>
+                <div class="item"><span class="label">Masa Pembayaran</span><span class="val" id="s_masa">-</span></div>
+              </div>
+
+              <div class="powered">Powered by: <a class="link" href="#">www.prufesorasuransi.com</a></div>
+
+              <div class="results">
+                <div class="resultCard accent-warn">
+                  <h4 style="font-family: Inter;"><b>Estimasi premi (sebelum diskon)</b></h4>
+                  <div id="premi" class="value">Rp – / tahun</div>
+                </div>
+                <div class="resultCard">
+                  <h4 style="font-family: Inter;"><b>Diskon (khusus hari ini)</b></h4>
+                  <div class="value"><span id="disc">0</span>%</div>
+                </div>
+                <div class="resultCard accent-ok">
+                  <h4 style="font-family: Inter;"><b>Estimasi premi (setelah diskon)</b></h4>
+                  <div id="premiNet" class="value">Rp – / tahun</div>
+                </div>
+              </div>
             </div>
-            <div class="resultCard">
-              <h4 style="font-family: Inter;"><b>Diskon (khusus hari ini)</b></h4>
-              <div class="value"><span id="disc">0</span>%</div>
+          </div>
+
+          <div class="footer">
+            <div>
+              <a href="https://www.instagram.com/prufesorasuransi"><img src="/assets/img/logo/IG-logo.png" width="20px" height="20px"> <b>@prufesorasuransi</b></a>
             </div>
-            <div class="resultCard accent-ok">
-              <h4 style="font-family: Inter;"><b>Estimasi premi (setelah diskon)</b></h4>
-              <div id="premiNet" class="value">Rp – / tahun</div>
+            <div>
+              <a href="https://www.tiktok.com/@prufesorasuransi"><b>@prufesorasuransi</b> <img src="/assets/img/logo/Tiktok-logo.png" width="20px" height="20px"></a>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="footer">
-        <div>
-          <a href="https://www.instagram.com/prufesorasuransi"><img src="/assets/img/logo/IG-logo.png" width="20px" height="20px"> <b>@prufesorasuransi</b></a>
-        </div>
-        <div>
-          <a href="https://www.tiktok.com/@prufesorasuransi"><b>@prufesorasuransi</b> <img src="/assets/img/logo/Tiktok-logo.png" width="20px" height="20px"></a>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
-    </section>
 
   </main>
   <!-- End #main -->
