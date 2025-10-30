@@ -120,7 +120,7 @@ let appHeader = `
               <li class="dropdown"><a href="https://www.prufesorasuransi.com#products"><span>Products</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                   <li><a href="/kalkulator-premi-kesehatan">Kalkulator Premi Asuransi Kesehatan</a></li>
-                  <li><a href="/kalkulator-premi">Kalkulator Premi Asuransi Jiwa</a></li>
+                  <li><a href="/kalkulator-premi-jiwa">Kalkulator Premi Asuransi Jiwa</a></li>
                 </ul>
               </li>
               
